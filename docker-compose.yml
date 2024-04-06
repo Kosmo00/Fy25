@@ -1,0 +1,59 @@
+version: '3'
+services:
+  redis:
+    image: redis:latest
+    container_name: gym_redis
+    restart: always
+    networks:
+      gym_network:
+        aliases:
+          - redis
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./database:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      gym_network:
+        aliases:
+          - mysql
+  phpmyadmin:
+    image: phpmyadmin
+    environment:
+      PMA_ARBITRARY: 1
+    ports:
+      - "8080:80"
+    networks:
+      gym_network:
+        aliases:
+          - phpmyadmin
+  webapp:
+    build: ./sitio-gimnasio
+    restart: always
+    environment:
+      PORT: 3000
+    ports: 
+    - 3000:3000
+    depends_on:
+      - redis
+      - mysql
+    links:
+      - redis
+      - mysql
+    networks:
+      gym_network:
+        aliases:
+          - web
+      
+volumes:
+  mysql_data:
+
+networks:
+  gym_network:
+    driver: bridge
+    ipam:
+      driver: default
