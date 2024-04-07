@@ -44,48 +44,61 @@ El módulo contendría:
 
 Modelos:
 
-Gimnasio:
+Gimnasio:                 Created: 06/04
 id: number
 direccion: string
 información: string
+image: string
 
 
-Carrusel_Home_Images:
+Carrusel_Home_Images:     Created: 06/04
 id: number
 in_carousel: bool
 url: string
 
 
-Usuario
+Rol:                      Created: 06/04        Data restrictions added: 07/04
+id: number
+nombre: string
+
+
+Usuario                   Created: 06/04
 id : number
 nombre : string
 apellidos : string
+contraseña : string
 CI : string
 correo : string
 teléfono : string
+foto_perfil : string
 notificaciones_whatsapp : boolean
 notificaciones_correo : boolean
 rol : Rol
-registros : Log
 
-Usuario_admin:
+Usuario_admin:            Created: 06/04
 
 Usuario_entrenador:
 ganancia_sesion_por_cliente (porciento) : number
 monto_ganado : number
 monto_cobrado : number
 información : string
+gimnasio : Gimnasio
 
 
-Usuario_recepcion:
+Usuario_recepcion:        Created: 06/04
+gimnasio : Gimnasio
 
-Usuario_atleta:
+Usuario_QR:               Created: 06/04
+gimnasio : Gimnasio
+
+Usuario_atleta:           Created: 06/04
 pago_por_sesion_spinning : number
-pago_por_sesion_fuerza : number
+pago_por_sesion_musculatura : number
 dinero_ingresado : number
 porciento_rebaja : number
+numero_de_usuario : number
 
-Log:
+Log:                      
 usuario: Usuario
 tipo: LogType
 fecha : Date
@@ -112,7 +125,9 @@ Home
     Registros de usuario (Restringida)
     Modificación de datos de usuario (Restringida, solo tendrá acceso el propio usuario y el admin)
   Buscador de usuarios (Admin tendrá visibilidad de todos los usuarios, entrenador y recepción solo tendrán visibilidad de los atletas)
+    Crear Usuario (Admin y recepción)
   Registros globales (Solo Admin)
+
   
 
 
