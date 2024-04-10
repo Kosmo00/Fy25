@@ -14,7 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   log_type.init({
-    name: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    }
   }, {
     sequelize,
     modelName: 'log_type',

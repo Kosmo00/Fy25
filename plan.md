@@ -2,7 +2,7 @@ max-Timeline: 10/06
 
 Tareas:
 Tarea                                                                       | Fecha estimada de entrega     | Fecha límite  | Notas | Tiempo estimado
-Creación de una primera versión de la base de datos                           10/04                           15/04                   8
+Creación de una primera versión de la base de datos                           10/04                           15/04                   12
 Creación de sistema de autenticación basado en roles                          12/04                           17/04                   4
 Creación de servicio de notificaciones                                        14/04                           20/04           1*      4
 Creación de vistas: login, registro, recuperación de contraseña               15/04                           25/04                   8

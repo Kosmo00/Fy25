@@ -47,6 +47,7 @@ Modelos:
 Gimnasio:                 Created: 06/04
 id: number
 direccion: string
+nombre: string
 información: string
 image: string
 
@@ -98,11 +99,18 @@ dinero_ingresado : number
 porciento_rebaja : number
 numero_de_usuario : number
 
-Log:                      
+Log:                      Created: 06/04
+id: number                  
 usuario: Usuario
 tipo: LogType
 fecha : Date
 descripcion: string
+
+
+Prices:
+id : number
+spinning_price: number,
+muscle_price: number
 
 
 

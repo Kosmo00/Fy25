@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('qr_role_data', {
+    await queryInterface.createTable('QrRoleData', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,10 +9,25 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: {
+            tableName: 'Users'
+          },
+          key: 'id'
+        }
       },
       gym_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 1,
+        references: {
+          model: {
+            tableName: 'Gyms'
+          },
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,
@@ -25,6 +40,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('qr_role_data');
+    await queryInterface.dropTable('QrRoleData');
   }
 };

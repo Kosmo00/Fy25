@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('trainer_role_data', {
+    await queryInterface.createTable('TrainerRoleData', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,22 +9,43 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: {
+            tableName: 'Users'
+          },
+          key: 'id'
+        }
       },
       earn_per_session: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 30
       },
       amount_earned: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0
       },
       amount_charged: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0
       },
       info: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(500)
       },
       gym_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 1,
+        references: {
+          model: {
+            tableName: 'Gyms'
+          },
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,
@@ -37,6 +58,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('trainer_role_data');
+    await queryInterface.dropTable('TrainerRoleData');
   }
 };

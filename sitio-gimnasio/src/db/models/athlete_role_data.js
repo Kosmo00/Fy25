@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class athlete_role_data extends Model {
+  class AthleteRoleData extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,16 +13,42 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  athlete_role_data.init({
-    user_id: DataTypes.INTEGER,
-    payment_spinning: DataTypes.INTEGER,
-    payment_muscle: DataTypes.INTEGER,
-    deposited_money: DataTypes.INTEGER,
-    discount_percent: DataTypes.INTEGER,
-    user_number: DataTypes.INTEGER
+  AthleteRoleData.init({
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'User',
+        key: 'id'
+      }
+    },
+    payment_spinning: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    },
+    payment_muscle: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    },
+    deposited_money: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    },
+    discount_percent: {
+      type: DataTypes.INTEGER,
+      allowNull: false, 
+      defaultValue: 0
+    },
+    user_number: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
-    modelName: 'athlete_role_data',
+    modelName: 'AthleteRoleData',
   });
-  return athlete_role_data;
+  return AthleteRoleData;
 };

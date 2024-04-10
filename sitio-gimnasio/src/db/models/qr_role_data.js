@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class qr_role_data extends Model {
+  class QrRoleData extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,12 +13,27 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  qr_role_data.init({
-    user_id: DataTypes.INTEGER,
-    gym_id: DataTypes.INTEGER
+  QrRoleData.init({
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'User',
+        key: 'id'
+      }
+    },
+    gym_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1,
+      references: {
+        model: "Gym",
+        key: 'id'
+      }
+    }
   }, {
     sequelize,
-    modelName: 'qr_role_data',
+    modelName: 'QrRoleData',
   });
-  return qr_role_data;
+  return QrRoleData;
 };
