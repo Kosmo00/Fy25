@@ -1,37 +1,67 @@
+"use client"
+import Link from "next/link";
+import React, { useState } from "react";
+import { FaBars, FaTimes, FaCircleNotch } from "react-icons/fa";
+
 const Navbar = () => {
- return (
-    <div className="bg-green-900">
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-        <div className="relative flex items-center justify-between h-16">
-          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-            <button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-              <span className="sr-only">Open main menu</span>
-              <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-              <svg className="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-            <div className="flex-shrink-0 flex items-center">
-              <img className="block lg:hidden h-8 w-auto" src="/favicon.ico" alt="Workflow" />
-              <img className="hidden lg:block h-8 w-auto" src="/favicon.ico" alt="Workflow" />
-            </div>
-            <div className="hidden sm:block sm:ml-6">
-              <div className="flex space-x-4">
-                <a href="#" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Dashboard</a>
-                <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Team</a>
-                <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>
-                <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Calendar</a>
-              </div>
-            </div>
-          </div>
-        </div>
+  const [nav, setNav] = useState(false);
+
+  const links = [
+    {
+      id: 1,
+      link: "home",
+    }
+  ];
+
+  return (
+    <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-black fixed nav">
+      <div>
+        <h1 className="text-4xl font-signature ml-2">
+          <a className="hover:transition ease-in-out text-white" href="/">
+            <FaCircleNotch size={50} />
+          </a>
+        </h1>
       </div>
+      <div className="flex">
+        <ul className="hidden md:flex">
+          {links.map(({ id, link }) => (
+            <li
+              key={id}
+              className="nav-links px-5 cursor-pointer hover:scale-105 duration-100"
+            >
+              <Link href={link} className="text-white">{link}</Link>
+            </li>
+          ))}
+        </ul>
+        <div className="cursor-pointer hover:scale-105 duration-100">
+          Iniciar sesion
+        </div>
+
+      </div>
+
+      <div
+        onClick={() => setNav(!nav)}
+        className="cursor-pointer pr-4 z-10 text-gray-500 md:hidden"
+      >
+        {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
+      </div>
+
+      {nav && (
+        <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-black to-gray-800 text-gray-500">
+          {links.map(({ id, link }) => (
+            <li
+              key={id}
+              className="px-4 cursor-pointer py-6 text-4xl"
+            >
+              <Link onClick={() => setNav(!nav)} className="text-white" href={link}>
+                {link}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
- );
+  );
 };
 
 export default Navbar;
