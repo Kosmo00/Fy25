@@ -2,10 +2,11 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaBars, FaTimes, FaCircleNotch } from "react-icons/fa";
+import { SignPopUp } from "./popups/SignPopUp";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
-
+  const [openSignPopUp, setOpenSignPopUp] = useState(false)
   const links = [
     {
       id: 1,
@@ -14,9 +15,9 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-black fixed nav">
+    <div className="flex justify-between items-center w-full px-4 text-white bg-black fixed nav">
       <div>
-        <h1 className="text-4xl font-signature ml-2">
+        <h1 className="font-signature ml-2 my-2">
           <a className="hover:transition ease-in-out text-white" href="/">
             <FaCircleNotch size={50} />
           </a>
@@ -33,10 +34,10 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <div className="cursor-pointer hover:scale-105 duration-100">
+        <div className="cursor-pointer hover:scale-105 duration-100" onClick={() => setOpenSignPopUp(true)}>
           Iniciar sesion
         </div>
-
+        { <SignPopUp onClose={() => setOpenSignPopUp(false)} show={openSignPopUp}/>}
       </div>
 
       <div
