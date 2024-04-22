@@ -42,7 +42,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         unique: true,
-        autoIncrement: true
       },
       createdAt: {
         allowNull: false,

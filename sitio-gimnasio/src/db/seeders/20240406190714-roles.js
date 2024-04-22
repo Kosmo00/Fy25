@@ -1,16 +1,35 @@
 'use strict';
 
+const DB_NAME = 'Roles'
+
+const roles = [
+  {
+    name: 'athlete',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+
+  },
+  {
+    name: 'qr-scanner',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    name: 'admin',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    name: 'reception',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+]
+
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+    await queryInterface.bulkInsert(DB_NAME, roles, {});
+    
   },
 
   async down (queryInterface, Sequelize) {
