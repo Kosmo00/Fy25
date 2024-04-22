@@ -1,5 +1,5 @@
 import React, { FC, SyntheticEvent, useEffect, useState } from 'react'
-import DefaultPopupWrapper from './DefaultPopup'
+import DefaultPopupWrapper from './DefaultPopUp'
 import { toastErrorMessage } from '@/utils/toastUtils';
 
 
