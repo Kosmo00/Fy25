@@ -26,7 +26,7 @@ export const SignPopUp = ({ onClose, show }) => {
             <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-20 rounded bg-gray-800" onClick={e => e.stopPropagation()} style={{width: '30vw'}}>
                 <div className="max-w-md w-full space-y-8">
                     <div>
-                        <img src="next.svg" alt="Logo" className='mx-auto' style={{ height: 50, borderRadius: 30 }} />
+                        <img src="/next.svg" alt="Logo" className='mx-auto' style={{ height: 50, borderRadius: 30 }} />
                         <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
                             {signUp ? "Registrarse" : "Iniciar sesión"}
                         </h2>

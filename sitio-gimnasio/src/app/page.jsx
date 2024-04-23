@@ -1,13 +1,15 @@
+import GymCarousel from "@/components/Carousel";
+
+const placeholders = [{
+  src: "/placeholders/1.webp",
+  txt: "Test"
+}]
 
 export default function Home() {
   return (
-    <main>
+    <div className="pt-20">
       <div>
-        header
-        <div>
-          carousel
-        </div>
-        end header
+        <GymCarousel images={placeholders} />
       </div>
       <div>
         about us
@@ -20,6 +22,6 @@ export default function Home() {
         contact us
         end contact us
       </div>
-    </main>
+    </div>
   );
 }
