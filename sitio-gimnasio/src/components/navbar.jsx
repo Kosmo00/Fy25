@@ -11,11 +11,15 @@ const Navbar = () => {
     {
       id: 1,
       link: "home",
+    },
+    {
+      id: 2,
+      link: "home2",
     }
   ];
 
   return (
-    <div className="flex justify-between items-center w-full px-4 text-white bg-black fixed nav">
+    <div className="flex justify-between items-center w-full px-4 bg-[#1c1c23] fixed z-[5] shadow-lg">
       <div>
         <h1 className="font-signature ml-2 my-2">
           <a className="hover:transition ease-in-out text-white" href="/">
@@ -30,11 +34,11 @@ const Navbar = () => {
               key={id}
               className="nav-links px-5 cursor-pointer hover:scale-105 duration-100"
             >
-              <Link href={link} className="text-white">{link}</Link>
+              <Link href={link} className="text-[#708064]">{link}</Link>
             </li>
           ))}
         </ul>
-        <div className="cursor-pointer hover:scale-105 duration-100" onClick={() => setOpenSignPopUp(true)}>
+        <div className="cursor-pointer hover:scale-105 duration-100 mx-3" onClick={() => setOpenSignPopUp(true)}>
           Iniciar sesion
         </div>
         { <SignPopUp onClose={() => setOpenSignPopUp(false)} show={openSignPopUp}/>}
@@ -54,7 +58,7 @@ const Navbar = () => {
               key={id}
               className="px-4 cursor-pointer py-6 text-4xl"
             >
-              <Link onClick={() => setNav(!nav)} className="text-white" href={link}>
+              <Link onClick={() => setNav(!nav)} className="text-[#9fe01e]" href={link}>
                 {link}
               </Link>
             </li>

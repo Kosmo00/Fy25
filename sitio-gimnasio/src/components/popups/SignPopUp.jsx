@@ -23,11 +23,11 @@ export const SignPopUp = ({ onClose, show }) => {
     };
     return (
         <DefaultPopupWrapper onClose={onClose} show={show} centered={true}>
-            <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-20 rounded bg-gray-800" onClick={e => e.stopPropagation()} style={{width: '30vw'}}>
+            <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-20 rounded bg-[#1c1c23] sign-popup-container" onClick={e => e.stopPropagation()}>
                 <div className="max-w-md w-full space-y-8">
                     <div>
                         <img src="/next.svg" alt="Logo" className='mx-auto' style={{ height: 50, borderRadius: 30 }} />
-                        <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
+                        <h2 className="mt-6 text-center text-3xl font-extrabold text-[#9fe01e]">
                             {signUp ? "Registrarse" : "Iniciar sesión"}
                         </h2>
                     </div>
@@ -40,7 +40,7 @@ export const SignPopUp = ({ onClose, show }) => {
                                     type="email"
                                     autoComplete="email"
                                     required
-                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-[#708064] rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
@@ -76,9 +76,9 @@ export const SignPopUp = ({ onClose, show }) => {
                         <div>
                             <button
                                 type="submit"
-                                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white focus:outline-none focus:ring-2 focus:ring-offset-2 bg-indigo-800"
+                                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-md font-medium rounded-md text-[#404048] focus:outline-none focus:ring-2 focus:ring-offset-2 bg-[#9fe01e]"
                             >
-                                Log in
+                                {signUp?"Registrarte":"Iniciar sesión"}
                             </button>
                         </div>
                         <div className='flex'>
