@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
         <body className={inter.className}>
           <Navbar />
           <ToastContainer />
-          <div className="container">
+          <div className="main-container">
 
             {/* <h1>Test</h1> */}
             <main>
