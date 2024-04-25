@@ -1,8 +1,14 @@
+import Header from "@/components/home/Header";
+import Services from "@/components/home/Services";
+import Carousel from "@/components/home/Carousel";
 
-export default function Home() {
+export default function Home({carouselImages}) {
   return (
-    <main>
-      <div>
+    <div>
+      <Header />
+      <Services />
+      {/* <Carousel /> */}
+      {/* <div>
         header
         <div>
           carousel
@@ -19,7 +25,7 @@ export default function Home() {
       <div>
         contact us
         end contact us
-      </div>
-    </main>
+      </div> */}
+    </div>
   );
 }
