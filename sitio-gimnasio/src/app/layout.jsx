@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { SessionContextProvider } from "@/context/sessionContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,15 +20,19 @@ export default function RootLayout({ children }) {
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       </head>
-      <body className={inter.className}>
-        <Navbar />
-        <ToastContainer/>
-        <div className="main-container">
-          <main>
-            {children}
-          </main>
-        </div>
-      </body>
+      <SessionContextProvider>
+        <body className={inter.className}>
+          <Navbar />
+          <ToastContainer />
+          <div className="main-container">
+
+            {/* <h1>Test</h1> */}
+            <main>
+              {children}
+            </main>
+          </div>
+        </body>
+      </SessionContextProvider>
     </html>
   );
 }
