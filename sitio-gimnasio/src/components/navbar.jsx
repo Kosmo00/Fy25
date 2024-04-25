@@ -15,7 +15,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="flex justify-between items-center w-full px-4 text-white bg-black fixed nav">
+    <div className="flex justify-between items-center w-full px-4 text-white bg-black fixed nav z-10">
       <div>
         <h1 className="font-signature ml-2 my-2">
           <a className="hover:transition ease-in-out text-white" href="/">
