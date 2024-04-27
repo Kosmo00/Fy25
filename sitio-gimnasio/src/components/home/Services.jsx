@@ -1,17 +1,17 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
+import isMovileHook from '@/hooks/isMovileHook'
 
 function Services() {
     return (
         <>
-            <Opt2 />
+            <Opt3 />
             <Opt1 />
         </>
     )
 }
-
-const MOVILE_BREAKPOINT = 768
 
 function Opt1() {
     const text = ' Cycling - Perder peso - Ganar músculo - Tonificar - Fortalecimiento -'
@@ -20,19 +20,7 @@ function Opt1() {
     const [currentString, setCurrentString] = useState(text.substring(0, text.length))
     let actualPos = text.length
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMovile(window.innerWidth < MOVILE_BREAKPOINT)
-        };
-    
-        window.addEventListener('resize', handleResize);
-    
-        handleResize();
-    
-        return () => {
-          window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+    isMovileHook(isActuallyMovile => setIsMovile(isActuallyMovile))
 
     useEffect(() => {
         const intervalo = setInterval(() => {
@@ -46,7 +34,7 @@ function Opt1() {
     return (
         <>
             <div 
-                className='flex justify-center items-center bg-black text-white text-2xl'
+                className='flex justify-center items-center bg-[#404040] text-white text-2xl'
                 style={{ height: '90px', whiteSpace: 'nowrap', overflowX: 'hidden'}}
             >
                 {isMovile ? currentString : text.substring(0, text.length - 1)}
@@ -79,6 +67,44 @@ function Opt2() {
                         </p>
                     </div>
                 </div>
+            </div>
+        </div>
+    )
+}
+
+function Opt3() {
+    return (
+        <div className='bg-black py-10 grid lg:grid-cols-2 grid-cols-1'>
+            <div>
+                <Image 
+                    className='bg-green-500 lg:ml-[25vw] home-area-card lg:mb-[220px] mx-auto' 
+                    src='/foto12.jpeg'
+                    width={450}
+                    height={150}
+                    alt='foto12'
+                />
+                <Image 
+                    className='bg-green-500 lg:ml-[25vw] home-area-card mt-7 mx-auto'
+                    src='/foto11.jpeg'
+                    width={450}
+                    height={150}
+                    alt='foto11'    
+                />
+            </div>
+            <div>
+                <Image className='bg-green-500 lg:mt-[185px] lg:ml-[-10vh] home-area-card mt-7 mx-auto' 
+                    src='/foto13.jpg'
+                    width={450}
+                    height={150}
+                    alt='foto13'  
+                />
+                <Image 
+                    className='bg-green-500 lg:mt-[220px] lg:ml-[-10vh] home-area-card mt-7 mx-auto'
+                    src='/foto10.jpeg'
+                    width={450}
+                    height={150}
+                    alt='foto10' 
+                />
             </div>
         </div>
     )

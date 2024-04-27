@@ -4,8 +4,8 @@ import ThreeImages from './header/ThreeImages'
 function Header() {
   return (
     <div 
-        className='grid lg:grid-cols-2 grid-cols-1 flex' 
-        style={{height: 'calc(30vh + 350px)', marginTop: '150px'}}
+        className='grid lg:grid-cols-2 grid-cols-1' 
+        style={{height: 'calc(25vh + 450px)', marginTop: '150px', overflowX: 'hidden'}}
     >
         <div className='mx-auto'>
             <div>

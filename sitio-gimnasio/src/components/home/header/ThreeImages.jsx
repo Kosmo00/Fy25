@@ -2,38 +2,26 @@
 
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
+import isMovileHook from '@/hooks/isMovileHook'
 
-const MIN_IMAGE_SIZE = 1.5
+const MIN_IMAGE_SIZE = 1.6
 const MAX_IMAGE_SIZE = 1
-const MOVILE_BREAKPOINT = 768
 
 function ThreeImages() {
 
     const [imageScale, setImageScale] = useState(MAX_IMAGE_SIZE)
 
-    useEffect(() => {
-        const handleResize = () => {
-          setImageScale(window.innerWidth < MOVILE_BREAKPOINT ? MIN_IMAGE_SIZE : MAX_IMAGE_SIZE)
-        };
-    
-        window.addEventListener('resize', handleResize);
-    
-        // Set the initial screen size
-        handleResize();
-    
-        // Clean up the event listener when the component unmounts
-        return () => {
-          window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+    isMovileHook(isMovile => {
+        setImageScale(isMovile ? MIN_IMAGE_SIZE : MAX_IMAGE_SIZE)
+    })
 
     const images = ['/gym2.png', '/gym.jpeg', '/gym3.jpeg']
-    const imageWidth1 = 200 / imageScale
-    const imageHeight1 = 250 / imageScale
-    const imageWidth2 = 300 / imageScale
-    const imageHeight2 = 150 / imageScale
-    const imageWidth3 = 220 / imageScale
-    const imageHeight3 = 140 / imageScale
+    const imageWidth1 = 250 / imageScale
+    const imageHeight1 = 300 / imageScale
+    const imageWidth2 = 350 / imageScale
+    const imageHeight2 = 200 / imageScale
+    const imageWidth3 = 240 / imageScale
+    const imageHeight3 = 160 / imageScale
     return (
         <>
             <Image 
