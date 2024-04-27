@@ -34,8 +34,8 @@ function Opt1() {
     return (
         <>
             <div 
-                className='flex justify-center items-center bg-[#404040] text-white text-2xl'
-                style={{ height: '90px', whiteSpace: 'nowrap', overflowX: 'hidden'}}
+                className='flex justify-center items-center bg-[#404040] text-white text-xl lg:text-2xl lg:p-7 p-4'
+                style={{ whiteSpace: 'nowrap', overflowX: 'hidden'}}
             >
                 {isMovile ? currentString : text.substring(0, text.length - 1)}
             </div>
