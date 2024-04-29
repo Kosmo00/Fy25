@@ -148,6 +148,10 @@ a{
   height: 150px;
 }
 
+.principal-bg {
+  background: #1e1e1e;
+}
+
 @media (max-width: 1025px) {
   .start-button{ 
     margin-top: 230px;

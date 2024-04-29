@@ -3,7 +3,7 @@ import React from 'react'
 function About() {
   return (
     <div className='lg:flex lg:align-row bg-white lg:pt-0 pt-10 pb-10 lg:pb-0'>
-        <div className='bg-black lg:mt-10 lg:ml-[8vw] lg:mr-[6vw] mr-[40vw] lg:rounded-t-3xl rounded-r-3xl lg:rounded-ee-none'>
+        <div className='principal-bg lg:mt-10 lg:ml-[8vw] lg:mr-[6vw] mr-[40vw] lg:rounded-t-3xl rounded-r-3xl lg:rounded-ee-none'>
             <p className='mx-[40px] text-2xl lg:text-3xl mb-10 text-white lg:mt-10 py-4'>
                 Sobre nosotros
             </p>

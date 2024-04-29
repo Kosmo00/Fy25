@@ -74,7 +74,7 @@ function Opt2() {
 
 function Opt3() {
     return (
-        <div className='bg-black py-10 grid lg:grid-cols-2 grid-cols-1'>
+        <div className='principal-bg py-10 grid lg:grid-cols-2 grid-cols-1'>
             <div>
                 <Image 
                     className='bg-green-500 lg:ml-[25vw] home-area-card lg:mb-[220px] mx-auto' 
