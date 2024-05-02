@@ -1,0 +1,83 @@
+{
+    "data":[
+    {
+        "foto_perfil": "https://avatar.iran.liara.run/public/boy",
+        "CI": "12345678",
+        "nombre": "Juan Pérez",
+        "rol": {
+            "id": 1,
+            "nombre": "Administrador"
+        },
+        "credito": 1000
+    },
+    {
+        "foto_perfil": "https://avatar.iran.liara.run/public/girl",
+        "CI": "23456789",
+        "nombre": "María García",
+        "rol": {
+            "id": 2,
+            "nombre": "Usuario"
+        },
+        "credito": 500
+    },
+    {
+        "foto_perfil": "https://avatar.iran.liara.run/public/boy",
+        "CI": "34567890",
+        "nombre": "Carlos Rodríguez",
+        "rol": {
+            "id": 3,
+            "nombre": "Moderador"
+        },
+        "credito": 750
+    },
+    {
+        "foto_perfil": "https://avatar.iran.liara.run/public/girl",
+        "CI": "45678901",
+        "nombre": "Ana López",
+        "rol": {
+            "id": 4,
+            "nombre": "Editor"
+        },
+        "credito": 300
+    },
+    {
+        "foto_perfil": "https://avatar.iran.liara.run/public/boy",
+        "CI": "56789012",
+        "nombre": "Pedro Martínez",
+        "rol": {
+            "id": 5,
+            "nombre": "Contribuidor"
+        },
+        "credito": 200
+    },
+    {
+        "foto_perfil": "https://avatar.iran.liara.run/public/girl",
+        "CI": "67890123",
+        "nombre": "Laura Fernández",
+        "rol": {
+            "id": 6,
+            "nombre": "Invitado"
+        },
+        "credito": 150
+    },
+    {
+        "foto_perfil": "https://avatar.iran.liara.run/public/boy",
+        "CI": "78901234",
+        "nombre": "José Gómez",
+        "rol": {
+            "id": 7,
+            "nombre": "Socio"
+        },
+        "credito": 100
+    },
+    {
+        "foto_perfil": "https://avatar.iran.liara.run/public/girl",
+        "CI": "89012345",
+        "nombre": "Sofía Hernández",
+        "rol": {
+            "id": 8,
+            "nombre": "Patrocinador"
+        },
+        "credito": 50
+    }
+]}

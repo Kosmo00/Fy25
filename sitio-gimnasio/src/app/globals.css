@@ -170,3 +170,8 @@ a{
     height: 100px;
   }
 }
+
+.table-top{
+  border-top-left-radius: 20;
+  border-top-right-radius: 20;
+}
