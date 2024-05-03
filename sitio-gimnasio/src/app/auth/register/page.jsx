@@ -2,11 +2,42 @@
 import React, {useState} from 'react'
 import { useFormik } from 'formik'
 import UploadImage from '@/components/register/UploadImage'
+import axios from 'axios'
+
+const validate = values => {
+    const errors = {}
+    if(!values.name){
+        errors.name = 'Campo requerido'
+    } else if(values.name.length >= 20){
+        errors.name = 'Debe contener menos de 20 caracteres'
+    }
+
+    if(!values.lastname){
+        errors.lastname = 'Campo requerido'
+    } else if(values.name.length >= 20){
+        errors.name = 'Debe contener menos de 20 caracteres'
+    }
+
+    if (!values.email) {
+        errors.email = 'Campo requerido';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Correo inválido'
+    }
+
+    if (values.CI.length !== 11 || !/^\d+$/.test(values.CI)) {
+        errors.CI = 'Debe contener 11 números'
+    }
+
+    if (values.phone.length !== 8 || !/^\d+$/.test(values.phone)) {
+        errors.phone = 'Debe contener 8 números'
+    }
+
+    return errors
+}
 
 function Register() {
 
     const [image, setImage] = useState(null)
-
 
     const formik = useFormik({
         initialValues:{
@@ -19,18 +50,12 @@ function Register() {
             repeat_password: ''
         },
         onSubmit: values => {
-            console.log('values', JSON.stringify(values))
-            fetch('/api/user', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: values
-            }) 
-            .then(response => response.json())
-            .then(data => console.log('response', data))
+            values = {...values, file: image}
+            axios.postForm('/api/users', values)
+            .then(res => console.log('response', res.data))
             .catch(error => console.error(error));
-        } 
+        } ,
+        validate
     })
 
     const {name, lastname, email, CI, phone, password, repeat_password} = formik.values
@@ -43,9 +68,9 @@ function Register() {
                 </div>
                 <form className='py-5 px-10 bg-neutral-200' onSubmit={formik.handleSubmit}>
                     <div className='card-body grid sm:grid-cols-2'>
-                        <div className='sm:ml-10 sm:order-last'>
+                        <div className='sm:ml-10 sm:order-last mb-5'>
                             <UploadImage setImage={setImage} />
-
+                            {!image && <label className='text-red-500 label'>Foto de perfil requerida</label>}
                         </div>
                         <div>
 
@@ -60,6 +85,7 @@ function Register() {
                                     value={name}
                                     onChange={formik.handleChange}
                                 />
+                                {formik.errors.name && <label className='text-red-500 label'>{formik.errors.name}</label>}
                             </div>
 
                             <div className='form-control mt-3'>
@@ -73,9 +99,10 @@ function Register() {
                                     value={lastname}
                                     onChange={formik.handleChange}
                                 />
+                                {formik.errors.lastname && <label className='text-red-500 label'>{formik.errors.lastname}</label>}
                             </div>
 
-                            <div className='form-control'>
+                            <div className='form-control mt-3'>
                                 <label className='label' htmlFor="email">Correo electrónico<sup>*</sup></label>
                                 <input
                                     id='email'
@@ -86,6 +113,7 @@ function Register() {
                                     value={email}
                                     onChange={formik.handleChange}
                                 />
+                                {formik.errors.email && <label className='text-red-500 label'>{formik.errors.email}</label>}
                             </div>
 
                             <div className='form-control mt-3'>
@@ -99,6 +127,7 @@ function Register() {
                                     value={CI}
                                     onChange={formik.handleChange}
                                 />
+                                {formik.errors.CI && <label className='text-red-500 label'>{formik.errors.CI}</label>}
                             </div>
                             
                             <div className='form-control mt-3'>
@@ -110,8 +139,9 @@ function Register() {
                                     value={phone}
                                     onChange={formik.handleChange}
                                     className="border-gray-300 rounded p-2 focus:ring-gray-400 focus:border-gray-500"
-                                    placeholder="55 555555"
+                                    placeholder="55555555"
                                 />
+                                {formik.errors.phone && <label className='text-red-500 label'>{formik.errors.phone}</label>}
                             </div>
 
                             <div className='form-control mt-3'>

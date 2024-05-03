@@ -1,8 +1,7 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+import { Model, DataTypes } from 'sequelize';
+import connection from '../connection';
+const initUsers = (sequelize, Types) => {
   class User extends Model {
     /**
      * Helper method for defining associations.
@@ -57,7 +56,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     verified_email: {
       type: DataTypes.BOOLEAN,
-      defaultValue: true,
+      defaultValue: false,
       allowNull: false
     },
     role_id: {
@@ -75,3 +74,5 @@ module.exports = (sequelize, DataTypes) => {
   });
   return User;
 };
+
+export default initUsers(connection, DataTypes)
