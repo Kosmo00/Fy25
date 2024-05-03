@@ -50,6 +50,11 @@ module.exports = {
         defaultValue: true,
         allowNull: false
       },
+      verified_email: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
+        allowNull: false
+      },
       role_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
