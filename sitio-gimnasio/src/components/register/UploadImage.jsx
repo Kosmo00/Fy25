@@ -21,7 +21,7 @@ function UploadImage({setImage}) {
             <div 
                 {...getRootProps({ className: 'dropzone' })}
                 htmlFor="profile_image" 
-                className="w-50 h-40 bg-white text-center flex items-center justify-center rounded-xl cursor-pointer border-4 border-dashed border-black ml-[-5px] sm:ml-0 mb-5 overflow-hidden"
+                className="w-50 h-40 bg-white text-center flex items-center justify-center rounded-xl cursor-pointer border-4 border-dashed border-black ml-[-5px] sm:ml-0 mb-1 overflow-hidden"
             >
                 {!imageUrl && <p className='text-xl underline decoration-dashed'>Agregar Imagen</p>}
                 {imageUrl && <Image src={imageUrl} alt='No es una imagen' width={250} height={220} /> }

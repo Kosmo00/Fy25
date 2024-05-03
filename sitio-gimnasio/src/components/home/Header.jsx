@@ -10,7 +10,7 @@ function Header() {
         <div className='mx-auto'>
             <div>
                 <h1 className='text-4xl home-section-header'>
-                    Tu espacio Fy25 
+                    Tu espacio F<sub className='text-2xl ml-[-7px] mr-1'>y</sub>25 
                 </h1>
                 <p className='ml-3 mt-3 text-2xl break-words home-section-header'>
                     Más que un gimnasio, <br /> una familia

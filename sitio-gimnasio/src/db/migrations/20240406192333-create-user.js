@@ -52,7 +52,7 @@ module.exports = {
       },
       verified_email: {
         type: Sequelize.BOOLEAN,
-        defaultValue: true,
+        defaultValue: false,
         allowNull: false
       },
       role_id: {
