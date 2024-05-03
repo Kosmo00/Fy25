@@ -131,7 +131,7 @@ a{
 }
 
 .main-container {
-  padding-top: 60px;
+  padding-top: 10vh;
 }
 
 .home-section-header {
@@ -169,4 +169,9 @@ a{
     width: 300px;
     height: 100px;
   }
+}
+
+.table-top{
+  border-top-left-radius: 20;
+  border-top-right-radius: 20;
 }
