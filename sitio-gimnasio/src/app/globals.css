@@ -152,6 +152,19 @@ a{
   background: #1e1e1e;
 }
 
+.form-control {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-control .label {
+  margin-left: 10px;
+}
+
+.form-control input {
+  outline: transparent;
+}
+
 @media (max-width: 1025px) {
   .start-button{ 
     margin-top: 230px;
