@@ -1,20 +1,22 @@
 'use client'
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import UploadImage from '@/components/register/UploadImage'
-import axios from 'axios'
+import RestApiClient from '@/utils/rest_api_client'
+import { ApiEndpoint } from '@/utils/rest_api_config'
+import { toastErrorMessage, toastInfoMessage } from '@/utils/toastUtils'
 
 const validate = values => {
     const errors = {}
-    if(!values.name){
+    if (!values.name) {
         errors.name = 'Campo requerido'
-    } else if(values.name.length >= 20){
+    } else if (values.name.length >= 20) {
         errors.name = 'Debe contener menos de 20 caracteres'
     }
 
-    if(!values.lastname){
+    if (!values.lastname) {
         errors.lastname = 'Campo requerido'
-    } else if(values.name.length >= 20){
+    } else if (values.name.length >= 20) {
         errors.name = 'Debe contener menos de 20 caracteres'
     }
 
@@ -40,7 +42,7 @@ function Register() {
     const [image, setImage] = useState(null)
 
     const formik = useFormik({
-        initialValues:{
+        initialValues: {
             name: '',
             lastname: '',
             email: '',
@@ -49,16 +51,30 @@ function Register() {
             password: '',
             repeat_password: ''
         },
-        onSubmit: values => {
-            values = {...values, file: image}
-            axios.postForm('/api/users', values)
-            .then(res => console.log('response', res.data))
-            .catch(error => console.error(error));
-        } ,
+        onSubmit: async values => {
+            values = { ...values, file: image }
+            try {
+                const res = await RestApiClient.postForm(ApiEndpoint.users, values)
+
+                if (res.data.status === 201) {
+                    toastInfoMessage("Usuario creado correctamente")
+                    console.log('response', res.data)
+                    window.location.href = '/auth/register/verify_email'
+                } else {
+                    toastErrorMessage(res.data.message)
+                    if (res.data.message === "Duplicated field") {
+                        toastErrorMessage(res.data.data.fields.map(field => `El campo ${field} ya existe`).join(", "))
+                    }
+                }
+            }
+            catch (error) {
+                console.log(error)
+            }
+        },
         validate
     })
 
-    const {name, lastname, email, CI, phone, password, repeat_password} = formik.values
+    const { name, lastname, email, CI, phone, password, repeat_password } = formik.values
 
     return (
         <div className='flex justify-center pt-10'>
@@ -129,7 +145,7 @@ function Register() {
                                 />
                                 {formik.errors.CI && <label className='text-red-500 label'>{formik.errors.CI}</label>}
                             </div>
-                            
+
                             <div className='form-control mt-3'>
                                 <label className='label' htmlFor="phone">Teléfono<sup>*</sup></label>
                                 <input
@@ -172,12 +188,12 @@ function Register() {
                         </div>
 
                     </div>
-                        <button 
-                            type='submit'
-                            className='bg-neutral-800 hover:bg-neutral-950 text-white font-bold py-3 px-5 rounded-lg font-light mt-5 text-lg bg-green-100'
-                        >
-                            Enviar
-                        </button>
+                    <button
+                        type='submit'
+                        className='bg-neutral-800 hover:bg-neutral-950 text-white font-bold py-3 px-5 rounded-lg font-light mt-5 text-lg bg-green-100'
+                    >
+                        Enviar
+                    </button>
                 </form>
             </div>
         </div>

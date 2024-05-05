@@ -4,41 +4,40 @@ import { NextResponse } from "next/server";
 import { writeFile, access, mkdir } from "fs/promises"
 import path from "path"
 import { v4 as uuidv4 } from 'uuid'
-
-
-export async function GET() {
-    return Response.json({ data: "aaaaaaaaaaaaaaaaaaaaaaaaa" })
-}
+import { createTransport } from 'nodemailer'
+import bcrypt from 'bcryptjs'
 
 async function saveFile(file) {
     const buffer = Buffer.from(await file.arrayBuffer())
     const file_ext = file.name.split('.')
     const filename = '/user_images/' + uuidv4() + '.' + file_ext[file_ext.length - 1]
-    try{
+    try {
         await access(path.join(process.cwd(), 'public' + '/user_images/'))
-    }catch(err){
-        await mkdir(path.join(process.cwd(), 'public' + '/user_images/'), {recursive: true})
+    } catch (err) {
+        await mkdir(path.join(process.cwd(), 'public' + '/user_images/'), { recursive: true })
     }
 
     try {
         await writeFile(path.join(process.cwd(), 'public' + filename), buffer);
         return filename
     }
-    catch(err){
+    catch (err) {
         console.log("Error occured saving file", err);
         throw new Error
     }
 }
 
-async function insertUserInDatabase(formData){
+async function insertUserInDatabase(formData) {
     const { name, lastname, email, CI, phone, password, file } = formData
-    try{
-        await User.create({
-            name, lastname, email, CI, phone, password, profile_image: file
+    const pwd = await bcrypt.hash(password, 10);
+    try {
+        const res = await User.create({
+            name, lastname, email, CI, phone, password: pwd, profile_image: file
         })
+        return res.dataValues.id
     }
-    catch(err){
-        if(err.original.code == 'ER_DUP_ENTRY'){
+    catch (err) {
+        if (err.original.code == 'ER_DUP_ENTRY') {
             return err.fields
         }
         console.log('Error creating user', err)
@@ -50,31 +49,45 @@ export async function POST(req) {
     const form = await req.formData()
     const file = form.get('file')
     let filename
-    if(!file){
-        return NextResponse.json({message: 'No file received', status: 400})
+    if (!file) {
+        return NextResponse.json({ message: 'No file received', status: 400 })
     }
-    try{
+    try {
         filename = await saveFile(file)
     }
-    catch(err){
-        return NextResponse.json({message: 'Error saving file', status: 500})
+    catch (err) {
+        return NextResponse.json({ message: 'Error saving file', status: 500 })
     }
     let formData = {}
     for (const pair of form.entries()) {
         formData[pair[0]] = pair[1]
     }
     formData['file'] = filename
-
-    try{
-        const duplicated_fields = await insertUserInDatabase(formData)
-        if(duplicated_fields){
-            console.log(duplicated_fields)
-            return NextResponse.json({message: 'Duplicated field', data: {fields: Object.keys(duplicated_fields)}, status: 400})
+    let idOrDuplicated_fields
+    try {
+        idOrDuplicated_fields = await insertUserInDatabase(formData)
+        if (typeof idOrDuplicated_fields !== "number" ) {
+            console.log(idOrDuplicated_fields)
+            return NextResponse.json({ message: 'Duplicated field', data: { fields: Object.keys(idOrDuplicated_fields) }, status: 400 })
         }
     }
-    catch(err){
-        return NextResponse.json({message: 'Error saving user', status: 500})
+    catch (err) {
+        return NextResponse.json({ message: 'Error saving user', status: 500 })
     }
-
+    createTransport({
+        service: "gmail",
+        auth: {
+            user: process.env.NEXT_PUBLIC_EMAIL,
+            pass: process.env.NEXT_PUBLIC_PASSWORD
+        }
+    }).sendMail({
+        from: 'jhpiano9731@gmail.com', 
+        to: formData.email,  
+        subject: 'Probando',
+        text: `http://localhost:3000/api/verify?email=${formData.email}&token=${idOrDuplicated_fields}`,
+    }).catch(err => console.log(err))
     return NextResponse.json({ message: "Success", status: 201 });
+}
+export async function GET() {
+    return Response.json({ data: "testing" })
 }
