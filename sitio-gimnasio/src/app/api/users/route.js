@@ -22,7 +22,7 @@ async function saveFile(file) {
         return filename
     }
     catch (err) {
-        console.log("Error occured saving file", err);
+        console.log("Error mientras se guardaba el fichero", err);
         throw new Error
     }
 }
@@ -40,9 +40,24 @@ async function insertUserInDatabase(formData) {
         if (err.original.code == 'ER_DUP_ENTRY') {
             return err.fields
         }
-        console.log('Error creating user', err)
+        console.log('Error creando usuario', err)
         throw new Error
     }
+}
+
+function sendMail(email, id){
+    createTransport({
+        service: "gmail",
+        auth: {
+            user: process.env.NEXT_PUBLIC_EMAIL,
+            pass: process.env.NEXT_PUBLIC_PASSWORD
+        }
+    }).sendMail({
+        from: 'jhpiano9731@gmail.com', 
+        to: email,  
+        subject: 'Probando',
+        text: `http://localhost:3000/api/verify?email=${email}&token=${id}`,
+    }).catch(err => console.log(err))
 }
 
 export async function POST(req) {
@@ -50,13 +65,13 @@ export async function POST(req) {
     const file = form.get('file')
     let filename
     if (!file) {
-        return NextResponse.json({ message: 'No file received', status: 400 })
+        return NextResponse.json({ message: 'No se recibió la imagen', status: 400 })
     }
     try {
         filename = await saveFile(file)
     }
     catch (err) {
-        return NextResponse.json({ message: 'Error saving file', status: 500 })
+        return NextResponse.json({ message: 'Error guardando imagen', status: 500 })
     }
     let formData = {}
     for (const pair of form.entries()) {
@@ -68,26 +83,23 @@ export async function POST(req) {
         idOrDuplicated_fields = await insertUserInDatabase(formData)
         if (typeof idOrDuplicated_fields !== "number" ) {
             console.log(idOrDuplicated_fields)
-            return NextResponse.json({ message: 'Duplicated field', data: { fields: Object.keys(idOrDuplicated_fields) }, status: 400 })
+            return NextResponse.json({ message: 'Campos duplicados', data: { fields: Object.keys(idOrDuplicated_fields) }, status: 400 })
         }
     }
     catch (err) {
-        return NextResponse.json({ message: 'Error saving user', status: 500 })
+        return NextResponse.json({ message: 'Error guardando usuario', status: 500 })
     }
-    createTransport({
-        service: "gmail",
-        auth: {
-            user: process.env.NEXT_PUBLIC_EMAIL,
-            pass: process.env.NEXT_PUBLIC_PASSWORD
-        }
-    }).sendMail({
-        from: 'jhpiano9731@gmail.com', 
-        to: formData.email,  
-        subject: 'Probando',
-        text: `http://localhost:3000/api/verify?email=${formData.email}&token=${idOrDuplicated_fields}`,
-    }).catch(err => console.log(err))
-    return NextResponse.json({ message: "Success", status: 201 });
+    try{
+        sendMail(formData.email, idOrDuplicated_fields)
+    } catch(err) {
+        console.log(err)
+        return NextResponse.json({message: 'Error enviando email'})
+    }
+
+    return NextResponse.json({ message: "Registro exitoso", status: 201 });
 }
+
 export async function GET() {
     return Response.json({ data: "testing" })
 }
+
