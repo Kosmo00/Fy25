@@ -34,6 +34,12 @@ const validate = values => {
         errors.phone = 'Debe contener 8 números'
     }
 
+    if (values.password.length < 8) {
+        errors.password = 'Debe contener más de 7 caracteres'
+    } else if(values.password !== values.repeat_password){
+        errors.repeat_password = 'Las contraseñas no coinciden'
+    }
+    console.log(values.repeat_password)
     return errors
 }
 
@@ -62,7 +68,7 @@ function Register() {
                     window.location.href = '/auth/register/verify_email'
                 } else {
                     toastErrorMessage(res.data.message)
-                    if (res.data.message === "Duplicated field") {
+                    if (res.data.message === "Campos duplicados") {
                         toastErrorMessage(res.data.data.fields.map(field => `El campo ${field} ya existe`).join(", "))
                     }
                 }
@@ -171,6 +177,7 @@ function Register() {
                                     value={password}
                                     onChange={formik.handleChange}
                                 />
+                                {formik.errors.password && <label className='text-red-500 label'>{formik.errors.password}</label>}
                             </div>
 
                             <div className='form-control mt-3'>
@@ -184,6 +191,7 @@ function Register() {
                                     value={repeat_password}
                                     onChange={formik.handleChange}
                                 />
+                                {formik.errors.repeat_password && <label className='text-red-500 label'>{formik.errors.repeat_password}</label>}
                             </div>
                         </div>
 
