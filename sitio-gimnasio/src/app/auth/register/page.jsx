@@ -5,6 +5,7 @@ import UploadImage from '@/components/register/UploadImage'
 import RestApiClient from '@/utils/rest_api_client'
 import { ApiEndpoint } from '@/utils/rest_api_config'
 import { toastErrorMessage, toastInfoMessage } from '@/utils/toastUtils'
+import PasswordInput from '@/components/PasswordInput'
 
 const validate = values => {
     const errors = {}
@@ -55,20 +56,21 @@ function Register() {
             values = { ...values, file: image }
             try {
                 const res = await RestApiClient.postForm(ApiEndpoint.users, values)
+                    .catch(err => {
+                        toastErrorMessage(err.response.data.message)
+                    })
+                toastInfoMessage("Usuario creado correctamente")
+                console.log('response', res.data)
+                window.location.href = '/auth/register/verify_email'
 
-                if (res.data.status === 201) {
-                    toastInfoMessage("Usuario creado correctamente")
-                    console.log('response', res.data)
-                    window.location.href = '/auth/register/verify_email'
-                } else {
-                    toastErrorMessage(res.data.message)
-                    if (res.data.message === "Duplicated field") {
-                        toastErrorMessage(res.data.data.fields.map(field => `El campo ${field} ya existe`).join(", "))
-                    }
-                }
             }
             catch (error) {
                 console.log(error)
+                if (error.response.data.message === "Duplicated field") {
+                    toastErrorMessage(error.response.data.data.fields.map(field => `El campo ${field} ya existe`).join(", "))
+                } else {
+                    toastErrorMessage(error.response.data.message)
+                }
             }
         },
         validate
@@ -86,7 +88,7 @@ function Register() {
                     <div className='card-body grid sm:grid-cols-2'>
                         <div className='sm:ml-10 sm:order-last mb-5'>
                             <UploadImage setImage={setImage} />
-                            {!image && <label className='text-red-500 label'>Foto de perfil requerida</label>}
+                            {!image && <p className='text-red-500 label'>Foto de perfil requerida</p>}
                         </div>
                         <div>
 
@@ -101,7 +103,7 @@ function Register() {
                                     value={name}
                                     onChange={formik.handleChange}
                                 />
-                                {formik.errors.name && <label className='text-red-500 label'>{formik.errors.name}</label>}
+                                {formik.errors.name && <p className='text-red-500 label'>{formik.errors.name}</p>}
                             </div>
 
                             <div className='form-control mt-3'>
@@ -115,7 +117,7 @@ function Register() {
                                     value={lastname}
                                     onChange={formik.handleChange}
                                 />
-                                {formik.errors.lastname && <label className='text-red-500 label'>{formik.errors.lastname}</label>}
+                                {formik.errors.lastname && <p className='text-red-500 label'>{formik.errors.lastname}</p>}
                             </div>
 
                             <div className='form-control mt-3'>
@@ -129,7 +131,7 @@ function Register() {
                                     value={email}
                                     onChange={formik.handleChange}
                                 />
-                                {formik.errors.email && <label className='text-red-500 label'>{formik.errors.email}</label>}
+                                {formik.errors.email && <p className='text-red-500 label'>{formik.errors.email}</p>}
                             </div>
 
                             <div className='form-control mt-3'>
@@ -143,7 +145,7 @@ function Register() {
                                     value={CI}
                                     onChange={formik.handleChange}
                                 />
-                                {formik.errors.CI && <label className='text-red-500 label'>{formik.errors.CI}</label>}
+                                {formik.errors.CI && <p className='text-red-500 label'>{formik.errors.CI}</p>}
                             </div>
 
                             <div className='form-control mt-3'>
@@ -157,24 +159,24 @@ function Register() {
                                     className="border-gray-300 rounded p-2 focus:ring-gray-400 focus:border-gray-500"
                                     placeholder="55555555"
                                 />
-                                {formik.errors.phone && <label className='text-red-500 label'>{formik.errors.phone}</label>}
+                                {formik.errors.phone && <p className='text-red-500 label'>{formik.errors.phone}</p>}
                             </div>
 
                             <div className='form-control mt-3'>
                                 <label className='label' htmlFor="password">Contraseña<sup>*</sup></label>
-                                <input
-                                    id='password'
-                                    type='password'
-                                    name='password'
-                                    className="border-gray-300 rounded p-2 focus:ring-gray-400 focus:border-gray-500"
-                                    placeholder="Contraseña"
-                                    value={password}
-                                    onChange={formik.handleChange}
-                                />
+                                <PasswordInput id={"password"} placeholder={"Contraseña"} value={password} formik={formik.handleChange} Register={true} />
                             </div>
 
                             <div className='form-control mt-3'>
                                 <label className='label' htmlFor="repeat-password">Repetir contraseña<sup>*</sup></label>
+                                {/* revisar por que no funciona este input... */}
+                                {/* <PasswordInput
+                                    id={"repeat-password"}
+                                    placeholder={"Repetir contraseña"}
+                                    value={repeat_password}
+                                    formik={formik.handleChange}
+                                    Register={true} /> */}
+
                                 <input
                                     id='repeat-password'
                                     type='password'
