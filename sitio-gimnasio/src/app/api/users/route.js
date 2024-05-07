@@ -81,7 +81,10 @@ export async function POST(req) {
     catch (err) {
         return NextResponse.json({ message: 'Error saving user', status: 500 })
     }
-    sendMail(formData.email, 'Probando', `http://localhost:3000/api/verify?email=${formData.email}&token=${idOrDuplicated_fields}`)
+    sendMail(formData.email, 'Probando', 
+    // `http://localhost:3000/api/verify?email=${formData.email}&token=${idOrDuplicated_fields}`
+    `<p>Hola,</p><p>Para verificar tu cuenta, haz clic en el siguiente enlace:</p><p><a href="http://localhost:3000/api/verify?email=${formData.email}&token=${idOrDuplicated_fields}" class="link">Verificar Cuenta</a></p><p>Si no solicitaste esta verificación, por favor ignora este correo.</p>`
+)
     
     return NextResponse.json({ message: "Success" },{
         status: 201

@@ -11,6 +11,6 @@ export function sendMail(mailTo: string, asunto: string, text: string) {
         from: process.env.NEXT_PUBLIC_EMAIL,
         to: mailTo,
         subject: asunto,
-        text: text,
+        html: text,
     }).catch(err => console.log(err))
 }
