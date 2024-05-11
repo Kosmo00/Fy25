@@ -1,9 +1,8 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class AdminRoleData extends Model {
+import { Model, DataTypes } from 'sequelize'
+import connection from '../connection'
+
+const initAdminRoleData = (sequelize, Types) => {  class AdminRoleData extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -28,3 +27,5 @@ module.exports = (sequelize, DataTypes) => {
   });
   return AdminRoleData;
 };
+
+export default initAdminRoleData(connection, DataTypes)

@@ -7,7 +7,9 @@ export async function GET(req) {
     if (response[0] === 1) {
         return Response.redirect(process.env.NEXT_PUBLIC_URL);
     } else {
-        return Response.json({ hola: "wrong token" });
+        return Response.json({ hola: "wrong token" },{
+            status: 401
+        });
     }
 }
 
