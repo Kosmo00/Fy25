@@ -6,6 +6,7 @@ import path from "path"
 import { v4 as uuidv4 } from 'uuid'
 import { createTransport } from 'nodemailer'
 import bcrypt from 'bcryptjs'
+import { sendMail } from '@/utils/utils';
 
 async function saveFile(file) {
     const buffer = Buffer.from(await file.arrayBuffer())
@@ -65,13 +66,25 @@ export async function POST(req) {
     const file = form.get('file')
     let filename
     if (!file) {
+<<<<<<< HEAD
         return NextResponse.json({ message: 'No se recibió la imagen', status: 400 })
+=======
+        return NextResponse.json({ message: 'No file received' },{
+            status: 400
+        })
+>>>>>>> main
     }
     try {
         filename = await saveFile(file)
     }
     catch (err) {
+<<<<<<< HEAD
         return NextResponse.json({ message: 'Error guardando imagen', status: 500 })
+=======
+        return NextResponse.json({ message: 'Error saving file' },{
+            status: 500
+        })
+>>>>>>> main
     }
     let formData = {}
     for (const pair of form.entries()) {
@@ -83,12 +96,19 @@ export async function POST(req) {
         idOrDuplicated_fields = await insertUserInDatabase(formData)
         if (typeof idOrDuplicated_fields !== "number" ) {
             console.log(idOrDuplicated_fields)
+<<<<<<< HEAD
             return NextResponse.json({ message: 'Campos duplicados', data: { fields: Object.keys(idOrDuplicated_fields) }, status: 400 })
+=======
+            return NextResponse.json({ message: 'Duplicated field', data: { fields: Object.keys(idOrDuplicated_fields) } },{
+                status: 400
+            })
+>>>>>>> main
         }
     }
     catch (err) {
         return NextResponse.json({ message: 'Error guardando usuario', status: 500 })
     }
+<<<<<<< HEAD
     try{
         sendMail(formData.email, idOrDuplicated_fields)
     } catch(err) {
@@ -97,6 +117,16 @@ export async function POST(req) {
     }
 
     return NextResponse.json({ message: "Registro exitoso", status: 201 });
+=======
+    sendMail(formData.email, 'Probando', 
+    // `http://localhost:3000/api/verify?email=${formData.email}&token=${idOrDuplicated_fields}`
+    `<p>Hola,</p><p>Para verificar tu cuenta, haz clic en el siguiente enlace:</p><p><a href="http://localhost:3000/api/verify?email=${formData.email}&token=${idOrDuplicated_fields}" class="link">Verificar Cuenta</a></p><p>Si no solicitaste esta verificación, por favor ignora este correo.</p>`
+)
+    
+    return NextResponse.json({ message: "Success" },{
+        status: 201
+    });
+>>>>>>> main
 }
 
 export async function GET() {

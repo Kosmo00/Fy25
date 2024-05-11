@@ -1,6 +1,8 @@
 import React, { FC, SyntheticEvent, useEffect, useState } from 'react'
 import DefaultPopupWrapper from './DefaultPopUp'
 import { toastErrorMessage } from '@/utils/toastUtils';
+import Link from 'next/link';
+import PasswordInput from '../PasswordInput';
 
 
 export const SignPopUp = ({ onClose, show }) => {
@@ -11,16 +13,17 @@ export const SignPopUp = ({ onClose, show }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(signUp){
-            if(password!== password2){
+        if (signUp) {
+            if (password !== password2) {
                 toastErrorMessage("Las contraseñas no coinciden.")
                 return
             }
-            console.log('Email:', email, 'Password:', password, "Password2: ",password2);
-        }else{
+            console.log('Email:', email, 'Password:', password, "Password2: ", password2);
+        } else {
             console.log('Email:', email, 'Password:', password);
         }
     };
+
     return (
         <DefaultPopupWrapper onClose={onClose} show={show} centered={true}>
             <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-20 rounded bg-[#1c1c23] sign-popup-container" onClick={e => e.stopPropagation()}>
@@ -47,30 +50,10 @@ export const SignPopUp = ({ onClose, show }) => {
                                 />
                             </div>
                             <div>
-                                <input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    autoComplete="current-password"
-                                    required
-                                    className={`appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 ${!signUp && "rounded-b-md" } focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`}
-                                    placeholder="Contraseña"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
+                                <PasswordInput placeholder={"Contraseña"} setPassword={setPassword} style={!signUp && "rounded-b-md"} value={password} />
                             </div>
                             {signUp && <div>
-                                <input
-                                    id="password2"
-                                    name="password2"
-                                    type="password"
-                                    autoComplete="current-password"
-                                    required
-                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                    placeholder={signUp?"Confirmar contraseña": "Contraseña" }
-                                    value={password2}
-                                    onChange={(e) => setPassword2(e.target.value)}
-                                />
+                                <PasswordInput placeholder={"Confirmar contraseña"} setPassword={setPassword2} style={"rounded-b-md"} value={password2} />
                             </div>}
                         </div>
                         <div>
@@ -78,8 +61,14 @@ export const SignPopUp = ({ onClose, show }) => {
                                 type="submit"
                                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-md font-medium rounded-md text-[#404048] focus:outline-none focus:ring-2 focus:ring-offset-2 bg-[#9fe01e]"
                             >
-                                {signUp?"Registrarte":"Iniciar sesión"}
+                                {signUp ? "Registrarte" : "Iniciar sesión"}
                             </button>
+                        </div>
+                        <div>
+                            {!signUp && <Link href="/auth/lost_password" className='text-gray-500 text-sm' onClick={() => onClose()}>
+                                Olvidó su contraeña, click aquí
+                            </Link>}
+
                         </div>
                         <div className='flex'>
                             <label className="switch">
@@ -87,7 +76,7 @@ export const SignPopUp = ({ onClose, show }) => {
                                 <span className="slider"></span>
                             </label>
                             <p className='ml-5 text-gray-500 text-sm'>
-                                {`Si ${signUp?"ya":"no"} tienes una cuenta${signUp?"":" todavía"}, toca el switch`}
+                                {`Si ${signUp ? "ya" : "no"} tienes una cuenta${signUp ? "" : " todavía"}, toca el switch`}
                             </p>
                         </div>
                     </form>
