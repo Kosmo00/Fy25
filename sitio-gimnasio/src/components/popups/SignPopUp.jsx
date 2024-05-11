@@ -2,7 +2,7 @@ import React, { FC, SyntheticEvent, useEffect, useState } from 'react'
 import DefaultPopupWrapper from './DefaultPopUp'
 import { toastErrorMessage } from '@/utils/toastUtils';
 import Link from 'next/link';
-import PasswordInput from '../PasswordInput';
+import PasswordInput from '../register/PasswordInput';
 
 
 export const SignPopUp = ({ onClose, show }) => {

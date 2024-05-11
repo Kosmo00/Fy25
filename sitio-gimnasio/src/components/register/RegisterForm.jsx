@@ -7,6 +7,7 @@ import { ApiEndpoint } from '@/utils/rest_api_config'
 import { toastErrorMessage, toastInfoMessage } from '@/utils/toastUtils'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
+import PasswordInput from './PasswordInput'
 
 const validate = values => {
     const errors = {}
@@ -37,7 +38,7 @@ const validate = values => {
     }
 
     if (values.password.length < 8) {
-        errors.password = 'Debe contener más de 7 caracteres'
+        errors.password = 'Debe tener más de 7 caracteres'
     } else if(values.password !== values.repeat_password){
         errors.repeat_password = 'Las contraseñas no coinciden'
     }
@@ -165,11 +166,10 @@ function RegisterForm() {
 
                     <div className='form-control mt-3'>
                         <label className='label' htmlFor="password">Contraseña<sup>*</sup></label>
-                        <input
+                        <PasswordInput
                             id='password'
-                            type='password'
                             name='password'
-                            className="border-gray-300 rounded p-2 focus:ring-gray-400 focus:border-gray-500"
+                            style="border-gray-300 rounded p-2 focus:ring-gray-400 focus:border-gray-500"
                             placeholder="Contraseña"
                             value={password}
                             onChange={formik.handleChange}
@@ -179,11 +179,10 @@ function RegisterForm() {
 
                     <div className='form-control mt-3'>
                         <label className='label' htmlFor="repeat-password">Repetir contraseña<sup>*</sup></label>
-                        <input
+                        <PasswordInput
                             id='repeat-password'
-                            type='password'
                             name='repeat_password'
-                            className="border-gray-300 rounded p-2 focus:ring-gray-400 focus:border-gray-500"
+                            style="border-gray-300 rounded p-2 focus:ring-gray-400 focus:border-gray-500"
                             placeholder="Contraseña"
                             value={repeat_password}
                             onChange={formik.handleChange}

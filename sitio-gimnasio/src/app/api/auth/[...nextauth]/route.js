@@ -4,10 +4,10 @@ import User from "@/db/models/user"
 import bcrypt from 'bcryptjs'
 
 
-
 export const authOptions = {
     pages: {
-        signIn: '/auth/login'
+        signIn: '/auth/login',
+        signPut: '/'
     },
     // session: {
     //     strategy: 'jwt',
