@@ -6,8 +6,8 @@ import RestApiClient from '@/utils/rest_api_client'
 import { ApiEndpoint } from '@/utils/rest_api_config'
 import { toastErrorMessage, toastInfoMessage } from '@/utils/toastUtils'
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
 import PasswordInput from './PasswordInput'
+import { signIn } from 'next-auth/react'
 
 const validate = values => {
     const errors = {}
@@ -47,6 +47,7 @@ const validate = values => {
 
 function RegisterForm() {
     const [image, setImage] = useState(null)
+    const [loading, setLoading] = useState(false)
 
     const formik = useFormik({
         initialValues: {
@@ -59,23 +60,29 @@ function RegisterForm() {
             repeat_password: ''
         },
         onSubmit: async values => {
+            if(loading){
+                return
+            }
+            setLoading(true)
             values = { ...values, file: image }
             try {
-                const res = await RestApiClient.postForm(ApiEndpoint.users, values)
+                const res = await RestApiClient.postForm(ApiEndpoint.register, values)
 
                 if (res.data.status === 201) {
                     toastInfoMessage("Usuario creado correctamente")
-                    const res = await signIn('credentials', {email: values.email, password: values.password, redirect: false})
-                    redirect('/auth/register/verify_email')
+                    const res = await signIn('credentials', {email: values.email, password: values.password, callbackUrl: '/auth/register/verify_email'})
                 } else {
                     toastErrorMessage(res.data.message)
                     if (res.data.message === "Campos duplicados") {
                         toastErrorMessage(res.data.data.fields.map(field => `El campo ${field} ya existe`).join(", "))
                     }
+                    setLoading(false)
                 }
             }
             catch (error) {
                 console.log(error)
+                setLoading(false)
+                toastErrorMessage("Error")
             }
         },
         validate
@@ -196,7 +203,8 @@ function RegisterForm() {
                 type='submit'
                 className='bg-neutral-800 hover:bg-neutral-950 text-white font-bold py-3 px-5 rounded-lg font-light mt-5 text-lg bg-green-100'
             >
-                Enviar
+                {loading && 'Enviando...'}
+                {!loading && 'Enviar'}
             </button>
 
             <p className=' mt-7 sm:hidden'>

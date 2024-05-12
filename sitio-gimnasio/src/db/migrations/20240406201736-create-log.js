@@ -8,22 +8,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: {
-            tableName: 'Users'
-          },
-          key: 'id'
-        }
-      },
       log_type_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: {
-            tableName: 'Logs'
+            tableName: 'LogTypes'
           },
           key: 'id'
         }
@@ -34,6 +24,10 @@ module.exports = {
       },
       description: {
         type: Sequelize.STRING(500),
+        allowNull: false
+      },
+      info: {
+        type: Sequelize.JSON,
         allowNull: false
       },
       createdAt: {

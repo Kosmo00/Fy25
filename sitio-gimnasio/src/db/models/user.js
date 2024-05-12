@@ -74,6 +74,10 @@ const initUsers = (sequelize, Types) => {
         model: 'Role',
         key: 'id'
       }
+    },
+    info: {
+      type: DataTypes.JSON,
+      allowNull: false
     }
   }, {
     sequelize,

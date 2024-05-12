@@ -23,6 +23,10 @@ const roles = [
     name: 'reception',
     createdAt: new Date(),
     updatedAt: new Date(),
+  },{
+    name: 'trainer',
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
 ]
 

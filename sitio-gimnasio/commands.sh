@@ -1,3 +1,3 @@
-node_modules/.bin/sequelize db:migrate:undo:all
-node_modules/.bin/sequelize db:migrate
-node_modules/.bin/sequelize db:seed:all
+sequelize-cli db:migrate:undo:all
+sequelize-cli db:migrate
+sequelize-cli db:seed:all
