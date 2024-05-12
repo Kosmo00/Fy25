@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Loading() {
+function Loading({text}) {
     return (
         <div className="loading-bar">
             Cargando

@@ -14,28 +14,20 @@ const initLogs = (sequelize, Types) => {
     }
   }
   Log.init({
-    user_id: {
+    log_info_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'User',
-        key: 'id'
-      }
+      allowNull: false
     },
     log_type_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'User',
-        key: 'id'
-      }
+      allowNull: false
     },
     date: {
       type: DataTypes.DATE,
       allowNull: false
     },
-    description: {
-      type: DataTypes.STRING(500),
+    info: {
+      type: DataTypes.JSON,
       allowNull: false
     }
   }, {

@@ -3,7 +3,7 @@ import { Model, DataTypes } from 'sequelize'
 import connection from '../connection'
 
 const initLogType = (sequelize, Types) => {
-  class log_type extends Model {
+  class LogType extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,17 +13,16 @@ const initLogType = (sequelize, Types) => {
       // define association here
     }
   }
-  log_type.init({
+  LogType.init({
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
+      allowNull: false
     }
   }, {
     sequelize,
-    modelName: 'log_type',
+    modelName: 'LogType',
   });
-  return log_type;
+  return LogType;
 };
 
 export default initLogType(connection, DataTypes)
