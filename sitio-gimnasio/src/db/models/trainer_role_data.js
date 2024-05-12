@@ -1,8 +1,8 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+import { Model, DataTypes } from 'sequelize'
+import connection from '../connection'
+
+const initTrainerRoleData = (sequelize, Types) => {
   class TrainerRoleData extends Model {
     /**
      * Helper method for defining associations.
@@ -53,3 +53,5 @@ module.exports = (sequelize, DataTypes) => {
   });
   return TrainerRoleData;
 };
+
+export default initTrainerRoleData(connection, DataTypes)

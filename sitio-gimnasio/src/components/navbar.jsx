@@ -1,23 +1,16 @@
-"use client"
 import Link from "next/link";
-import React, { useState } from "react";
-import { FaBars, FaTimes, FaCircleNotch } from "react-icons/fa";
-import { SignPopUp } from "./popups/SignPopUp";
+import React from "react";
+import { FaCircleNotch } from "react-icons/fa";
+import NavDropdown from "./navbar/NavDropdown";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import LogOutBtn from "./navbar/LogOutBtn";
 
-const Navbar = () => {
-  const [nav, setNav] = useState(false);
-  const [openSignPopUp, setOpenSignPopUp] = useState(false)
-  const links = [
-    {
-      id: 1,
-      link: "home",
-    },
-    {
-      id: 2,
-      link: "home2",
-    }
-  ];
-
+const links = [
+  
+];
+const Navbar = async () => {
+  const session = await getServerSession(authOptions)
   return (
     <div className="flex justify-between items-center w-full px-4 bg-[#1c1c23] fixed z-[5] shadow-lg">
       <div>
@@ -37,34 +30,33 @@ const Navbar = () => {
               <Link href={link} className="text-[#708064]">{link}</Link>
             </li>
           ))}
+          {
+            session?.user 
+            &&
+            <>
+              <li className="nav-links px-5 cursor-pointer hover:scale-105 duration-100">
+                <LogOutBtn />
+              </li>
+              <li className="nav-links px-5 cursor-pointer hover:scale-105 duration-100 text-[#708064]">
+                Mi perfil
+              </li>
+            </>
+          }
         </ul>
-        <div className="cursor-pointer hover:scale-105 duration-100 mx-3" onClick={() => setOpenSignPopUp(true)}>
-          Iniciar sesion
-        </div>
-        { <SignPopUp onClose={() => setOpenSignPopUp(false)} show={openSignPopUp}/>}
+        {
+          !session?.user
+          &&
+          <>
+            <Link href='/auth/login' className="cursor-pointer hover:scale-105 duration-100 mx-3 text-[#708064]">
+              Iniciar sesión
+            </Link>
+            <Link href='/auth/register' className="cursor-pointer hover:scale-105 duration-100 mx-3 text-[#708064]">
+              Regístrate
+            </Link>
+          </>
+        }
+        <NavDropdown />
       </div>
-
-      <div
-        onClick={() => setNav(!nav)}
-        className="cursor-pointer pr-4 z-10 text-gray-500 md:hidden"
-      >
-        {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
-      </div>
-
-      {nav && (
-        <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-black to-gray-800 text-gray-500">
-          {links.map(({ id, link }) => (
-            <li
-              key={id}
-              className="px-4 cursor-pointer py-6 text-4xl"
-            >
-              <Link onClick={() => setNav(!nav)} className="text-[#9fe01e]" href={link}>
-                {link}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 };

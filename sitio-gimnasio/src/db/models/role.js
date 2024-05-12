@@ -1,8 +1,8 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+import { Model, DataTypes } from 'sequelize'
+import connection from '../connection'
+
+const initRole = (sequelize, Types) => {
   class Role extends Model {
     /**
      * Helper method for defining associations.
@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.hasMany(models.user, {
+      this.hasMany(models.User, {
         foreignKey: 'role_id',
         onDelete: "CASCADE",
         onUpdate: "CASCADE"
@@ -29,3 +29,5 @@ module.exports = (sequelize, DataTypes) => {
   });
   return Role;
 };
+
+export default initRole(connection, DataTypes)

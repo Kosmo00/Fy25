@@ -1,6 +1,8 @@
 'use strict';
-import { Model, DataTypes } from 'sequelize';
-import connection from '../connection';
+import { Model, DataTypes } from 'sequelize'
+import connection from '../connection'
+import Role from './role'
+
 const initUsers = (sequelize, Types) => {
   class User extends Model {
     /**
@@ -8,40 +10,45 @@ const initUsers = (sequelize, Types) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      // define association here
+    static associate() {
+      this.belongsTo(Role, {
+        foreignKey: 'role_id',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+        as: 'role'
+      })
     }
   }
   User.init({
     name: {
-      type: DataTypes.STRING, //
+      type: DataTypes.STRING,
       allowNull: false
     },
     lastname: {
-      type: DataTypes.STRING, //
+      type: DataTypes.STRING, 
       allowNull: false
     },
     password: {
-      type: DataTypes.STRING, //
+      type: DataTypes.STRING, 
       allowNull: false
     },
     CI: {
-      type: DataTypes.STRING, //
+      type: DataTypes.STRING, 
       allowNull: false,
       unique: true
     },
     email: {
-      type: DataTypes.STRING, //
+      type: DataTypes.STRING, 
       allowNull: false,
       unique: true
     },
     phone: {
-      type: DataTypes.STRING, //
+      type: DataTypes.STRING, 
       allowNull: false,
       unique: true
     },
     profile_image: {
-      type: DataTypes.STRING, //
+      type: DataTypes.STRING, 
       allowNull: false
     },
     notify_whatsapp: {
@@ -64,7 +71,7 @@ const initUsers = (sequelize, Types) => {
       allowNull: false,
       defaultValue: 1,
       references: {
-        model: 'role',
+        model: 'Role',
         key: 'id'
       }
     }
@@ -72,7 +79,9 @@ const initUsers = (sequelize, Types) => {
     sequelize,
     modelName: 'User',
   });
+  User.associate()
   return User;
 };
+
 
 export default initUsers(connection, DataTypes)
