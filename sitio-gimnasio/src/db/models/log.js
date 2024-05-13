@@ -14,10 +14,6 @@ const initLogs = (sequelize, Types) => {
     }
   }
   Log.init({
-    log_info_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     log_type_id: {
       type: DataTypes.INTEGER,
       allowNull: false

@@ -24,7 +24,7 @@ const initImage = (sequelize, Types) => {
       allowNull: false
     },
     upload_by: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       references: {
         model: 'User',

@@ -10,17 +10,7 @@ const initGym = (sequelize, Types) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.hasMany(models.QrRoleData, {
-        foreignKey: gym_id,
-      })
-
-      this.hasMany(models.TrainerRoleData, {
-        foreignKey: gym_id
-      })
-
-      this.hasMany(models.ReceptionRoleData, {
-        foreignKey: gym_id
-      })
+      //
     }
   }
   Gym.init({
@@ -28,9 +18,14 @@ const initGym = (sequelize, Types) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    info: {
-      type: DataTypes.STRING(500),
+    name: {
+      type: DataTypes.STRING,
       allowNull: false
+    },
+    info: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: 'Sin descripción'
     },
     image: {
       type: DataTypes.STRING,

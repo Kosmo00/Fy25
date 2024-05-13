@@ -27,7 +27,7 @@ function LoginForm() {
         onSubmit: async values => {
             try {
                 const res = await signIn('credentials', {email: values.email, password: values.password, callbackUrl: '/'})
-                if(res.status === 401){
+                if(res?.status === 401){
                     toastErrorMessage('Credenciales incorrectas')
                 }
             }

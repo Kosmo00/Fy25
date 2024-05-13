@@ -1,8 +1,26 @@
 import { NextResponse, NextRequest } from 'next/server'
 import { getToken } from 'next-auth/jwt'
 
-function createLog(){
+const role_non_authorized_routes = {
+  'athlethe': [
+    '/api/payment/athlethe-assistance',
+    '/api/users/create',
+    '/api/users/list'
+  ],
+  'admin': [
 
+  ],
+  'trainer': [
+    '/api/payment/athlethe-assistance',
+    '/api/users/create'
+  ],
+  'reception': [
+
+  ],
+  'qr-scanner': [
+    '/api/users/create',
+    '/api/users/list'
+  ]
 }
 
 async function authorizeByRole(request: NextRequest){
