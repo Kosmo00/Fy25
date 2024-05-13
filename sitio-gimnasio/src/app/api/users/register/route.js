@@ -32,10 +32,10 @@ async function insertUserInDatabase(formData) {
     const { name, lastname, email, CI, phone, password, file } = formData
     const pwd = await bcrypt.hash(password, 10);
     try {
-        const res = await User.create({
+        const user = await User.create({
             name, lastname, email, CI, phone, password: pwd, profile_image: file, info: default_athlethe_info
         })
-        return res.dataValues.id
+        return user.id
     }
     catch (err) {
         if (err.original.code == 'ER_DUP_ENTRY') {
@@ -67,7 +67,7 @@ export async function POST(req) {
     let idOrDuplicated_fields
     try {
         idOrDuplicated_fields = await insertUserInDatabase(formData)
-        if (typeof idOrDuplicated_fields !== "number" ) {
+        if (typeof idOrDuplicated_fields !== "string" ) {
             console.log(idOrDuplicated_fields)
             return NextResponse.json({ message: 'Campos duplicados', data: { fields: Object.keys(idOrDuplicated_fields) }, status: 400 })
         }

@@ -1,7 +1,6 @@
 export interface AthletheInfo{
     deposited_money: number
-    payment_spinning: number
-    payment_muscle: number
+    payed_money: number
     discount_percent: number
 }
 
@@ -22,8 +21,7 @@ export interface TrainerInfo{
 
 export const default_athlethe_info = {
     deposited_money: 0,
-    payment_spinning: 0,
-    payment_muscle: 0,
+    payed_money: 0,
     discount_percent: 0
 }
 

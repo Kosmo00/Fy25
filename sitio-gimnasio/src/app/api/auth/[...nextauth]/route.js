@@ -27,7 +27,6 @@ export const authOptions = {
         async jwt({token, user}) {
             if (user) {
                 token.role = user.role;
-                // token.user = user;
             }
             return token
         }
@@ -48,6 +47,7 @@ export const authOptions = {
                     })
                     if(user && await bcrypt.compare(password, user.password)){
                             return {
+                                id: user.id,
                                 name: user.name,
                                 email: user.email,
                                 role: user.role.name
