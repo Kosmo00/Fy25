@@ -2,7 +2,7 @@
 /*
     This log is used for queries that adds money to athlethes accounts
 */
-export interface AthletheRechargeLog {
+export interface AthletheAssistanceLog {
     collector_id: string
     collector_name: string
     athlethe_id: string
@@ -17,8 +17,8 @@ export interface AthletheRechargeLog {
 export interface TrainerPaymentLog {
     admin_id: string
     admin_name: string
-    athlethe_id: string
-    athlethe_name: string
+    trainer_id: string
+    trainer_name: string
     amount: number
 }
 
