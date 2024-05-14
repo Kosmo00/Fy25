@@ -6,13 +6,13 @@ import { getToken } from "next-auth/jwt"
 
 export async function POST(req){
     const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-    const collector_id = token.sub
-    const collector_name = token.name
+    const admin_id = token.sub
+    const admin_name = token.name
     const { userId } = await req.json()
     const t = await sequelize.transaction()
     try{
         const user = await User.findByPk(userId, {
-            include: 'Role'
+            include: 'role'
         })
         if(!user){
             return NextResponse.json({message: 'Usuario no encontrado', status: 404})
@@ -28,10 +28,10 @@ export async function POST(req){
                 log_type_id: 2,
                 date: Date.now(),
                 info: {
-                    collector_id,
-                    collector_name,
-                    athlethe_id: user.id,
-                    athlethe_name: user.name,
+                    admin_id,
+                    admin_name,
+                    trainer_id: user.id,
+                    trainer_name: user.name,
                     amount
                 }
             },
@@ -39,11 +39,11 @@ export async function POST(req){
                 transaction: t
             }
         )
-        t.commit()
-        return NextResponse.json({message: 'Pago realizado correctamente'})
+        await t.commit()
+        return NextResponse.json({message: 'Pago realizado correctamente', status: 200})
     } catch(err){
         console.log(err)
-        t.rollback()
+        await t.rollback()
         return NextResponse.json({message: 'Error de servidor, intente de nuevo', status: 500})
     }
 }

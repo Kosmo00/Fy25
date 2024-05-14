@@ -13,7 +13,7 @@ export async function POST(req){
     const t = await sequelize.transaction()
     try{
         const user = await User.findByPk(userId, {
-            include: 'Role'
+            include: 'role'
         })
         if(!user){
             return NextResponse.json({message: 'Usuario no encontrado', status: 404})
@@ -42,11 +42,11 @@ export async function POST(req){
                 transaction: t
             }
         )
-        t.commit()
-        return NextResponse.json({message: 'Pago realizado correctamente'})
+        await t.commit()
+        return NextResponse.json({message: 'Pago realizado correctamente', status: 200})
     } catch(err){
         console.log(err)
-        t.rollback()
+        await t.rollback()
         return NextResponse.json({message: 'Error de servidor, intente de nuevo', status: 500})
     }
 }
