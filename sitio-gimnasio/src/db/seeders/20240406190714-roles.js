@@ -32,7 +32,7 @@ const roles = [
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert(DB_NAME, roles, {});
+    await queryInterface.bulkInsert(DB_NAME,  roles, {});
     
   },
 

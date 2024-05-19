@@ -92,8 +92,8 @@ export async function POST(req) {
 
 export async function GET() {
     try{
-        let users = await User.findAll()
-        users = users.filter(user => user.info.deposited_money === 100)
+        let users = await User.findAll({where: {role_id: 1}})
+        // users = users.filter(user => user.info.deposited_money === 100)
         // console.log(users[0].info)
         return Response.json({ data: users })
     }catch (err){

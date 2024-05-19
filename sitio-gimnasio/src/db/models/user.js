@@ -83,7 +83,7 @@ const initUsers = (sequelize, Types) => {
     },
     info: {
       type: DataTypes.JSON,
-      allowNull: false
+      allowNull: true
     }
   }, {
     sequelize,

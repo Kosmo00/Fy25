@@ -7,16 +7,11 @@ import bcrypt from 'bcryptjs'
 export const authOptions = {
     pages: {
         signIn: '/auth/login',
-        signPut: '/'
+        signOut: '/'
     },
-    // session: {
-    //     strategy: 'jwt',
-    //     maxAge: 60 * 60, // 1 hour,
-    //     updateAge: 30 * 60, // 30 mins
-    //     generateSessionToken: () => {
-    //         return randomUUID?.() ?? randomBytes(32).toString("hex")
-    //     }
-    // },
+    session: {
+        strategy: 'jwt',
+    },
     callbacks: {
         async session({session, token}) {
             if(session?.user){
