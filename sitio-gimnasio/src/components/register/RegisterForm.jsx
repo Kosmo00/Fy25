@@ -19,8 +19,8 @@ const validate = values => {
 
     if (!values.lastname) {
         errors.lastname = 'Campo requerido'
-    } else if (values.name.length >= 20) {
-        errors.name = 'Debe contener menos de 20 caracteres'
+    } else if (values.lastname.length >= 20) {
+        errors.lastname = 'Debe contener menos de 20 caracteres'
     }
 
     if (!values.email) {
@@ -70,7 +70,7 @@ function RegisterForm() {
 
                 if (res.data.status === 201) {
                     toastInfoMessage("Usuario creado correctamente")
-                    const res = await signIn('credentials', {email: values.email, password: values.password, callbackUrl: '/auth/register/verify_email'})
+                    await signIn('credentials', {email: values.email, password: values.password, callbackUrl: '/auth/register/verify_email'})
                 } else {
                     toastErrorMessage(res.data.message)
                     if (res.data.message === "Campos duplicados") {

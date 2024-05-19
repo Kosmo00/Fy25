@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import Image from 'next/image';
 
-function UploadImage({setImage}) {
+function UploadImage({ setImage, dontShowTopLabel }) {
 
     const [imageUrl, setImageUrl] = useState('')
 
@@ -16,17 +16,19 @@ function UploadImage({setImage}) {
         },
     });
     return (
-        <div className="form-control w-60">
-            <label className='label' htmlFor='profile_image'>Foto de perfil<sup>*</sup></label>
-            <div 
+        <div className="form-control w-full">
+            <label className='label' htmlFor='profile_image' hidden={dontShowTopLabel}>Foto de perfil<sup>*</sup></label>
+            <div
                 {...getRootProps({ className: 'dropzone' })}
-                htmlFor="profile_image" 
+                htmlFor="profile_image"
                 className="w-50 h-40 bg-white text-center flex items-center justify-center rounded-xl cursor-pointer border-4 border-dashed border-black ml-[-5px] sm:ml-0 mb-1 overflow-hidden"
             >
-                {!imageUrl && <p className='text-xl underline decoration-dashed'>Agregar Imagen</p>}
-                {imageUrl && <Image src={imageUrl} alt='No es una imagen' width={250} height={220} /> }
+                {!imageUrl ?
+                    <p className='text-xl underline decoration-dashed'>Agregar Imagen</p> :
+                    <Image src={imageUrl} alt='No es una imagen' width={250} height={220} />
+                }
                 <input {...getInputProps()} />
-            </div> 
+            </div>
         </div>
     )
 }
