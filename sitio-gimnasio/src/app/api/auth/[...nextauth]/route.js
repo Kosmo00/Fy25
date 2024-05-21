@@ -3,9 +3,6 @@ import Credentials from "next-auth/providers/credentials"
 import User from "@/db/models/user"
 import bcrypt from 'bcryptjs'
 
-import { NextResponse } from "next/server"
-
-
 export const authOptions = {
     pages: {
         signIn: '/auth/login',
