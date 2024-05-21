@@ -3,6 +3,8 @@ import Credentials from "next-auth/providers/credentials"
 import User from "@/db/models/user"
 import bcrypt from 'bcryptjs'
 
+import { NextResponse } from "next/server"
+
 
 export const authOptions = {
     pages: {
@@ -45,7 +47,8 @@ export const authOptions = {
                                 id: user.id,
                                 name: user.name,
                                 email: user.email,
-                                role: user.role.name
+                                role: user.role.name,
+                                verified_email: user.verified_email
                             }
                     }
                 } catch(err){
