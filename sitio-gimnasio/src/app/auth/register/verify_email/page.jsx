@@ -2,8 +2,8 @@ import React from 'react'
 
 function verify_email() {
   return (
-    <div className='w-full h-full flex justify-center items-center '>
-        verifique su email para activar su cuenta
+    <div className='text-2xl w-full h-full flex justify-center items-center '>
+        Verifique su email para activar su cuenta.
     </div>
   )
 }

@@ -4,7 +4,7 @@ const loading = () => {
   return (
     <div className='pt-20 w-full'>
       <div className="loading-bar mx-auto">
-        Página
+        Cargando
       </div>
     </div>
   )

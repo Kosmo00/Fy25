@@ -137,6 +137,7 @@ function RegisterForm() {
                             name='email'
                             className="border-gray-300 rounded p-2 focus:ring-gray-400 focus:border-gray-500"
                             placeholder="ejemplo@gmail.com"
+                            autoComplete="email"
                             value={email}
                             onChange={formik.handleChange}
                         />

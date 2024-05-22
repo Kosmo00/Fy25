@@ -3,7 +3,7 @@ import React from "react";
 import { FaCircleNotch } from "react-icons/fa";
 import NavDropdown from "./navbar/NavDropdown";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import LogOutBtn from "./navbar/LogOutBtn";
 
 const links = [
