@@ -247,7 +247,7 @@ function CreateUserForm({ authenticated_role }) {
         <div>
         <button
                 type='submit'
-                className='bg-neutral-800 hover:bg-neutral-950 text-white font-bold py-3 px-5 rounded-lg font-light mt-5 text-lg bg-green-100'
+                className='bg-neutral-800 hover:bg-neutral-950 text-white font-bold py-3 px-5 rounded-lg font-light mt-5 text-lg'
             >
                 {loading && 'Agregando...'}
                 {!loading && 'Agregar'}

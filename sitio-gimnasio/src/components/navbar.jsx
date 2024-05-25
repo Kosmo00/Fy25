@@ -9,8 +9,37 @@ import LogOutBtn from "./navbar/LogOutBtn";
 const links = [
   
 ];
-const Navbar = async () => {
+
+export const NavbarLinks = async () => {
   const session = await getServerSession(authOptions)
+  if(session?.user){
+    return(
+      <>
+        <li className="nav-links px-5 cursor-pointer hover:scale-105 duration-100">
+          <LogOutBtn />
+        </li>
+        <Link href='/user/profile' className="cursor-pointer hover:scale-105 duration-100 mx-3 text-[#708064]">
+          Mi perfil
+        </Link>
+      </>
+    )
+  }
+  else{
+    return (
+      <>
+        <Link href='/auth/login' className="cursor-pointer hover:scale-105 duration-100 mx-3 text-[#708064]">
+          Iniciar sesión
+        </Link>
+        <Link href='/auth/register' className="cursor-pointer hover:scale-105 duration-100 mx-3 text-[#708064]">
+          Regístrate
+        </Link>
+      </>
+    )
+  }
+}
+
+const Navbar = async () => {
+  const navbarLinks = NavbarLinks 
   return (
     <div className="flex justify-between items-center w-full px-4 bg-[#1c1c23] fixed z-[5] shadow-lg">
       <div>
@@ -30,32 +59,11 @@ const Navbar = async () => {
               <Link href={link} className="text-[#708064]">{link}</Link>
             </li>
           ))}
-          {
-            session?.user 
-            &&
-            <>
-              <li className="nav-links px-5 cursor-pointer hover:scale-105 duration-100">
-                <LogOutBtn />
-              </li>
-              <li className="nav-links px-5 cursor-pointer hover:scale-105 duration-100 text-[#708064]">
-                Mi perfil
-              </li>
-            </>
-          }
+          <NavbarLinks />
         </ul>
-        {
-          !session?.user
-          &&
-          <>
-            <Link href='/auth/login' className="cursor-pointer hover:scale-105 duration-100 mx-3 text-[#708064]">
-              Iniciar sesión
-            </Link>
-            <Link href='/auth/register' className="cursor-pointer hover:scale-105 duration-100 mx-3 text-[#708064]">
-              Regístrate
-            </Link>
-          </>
-        }
-        <NavDropdown />
+        <NavDropdown>
+          <NavbarLinks />
+        </NavDropdown>
       </div>
     </div>
   );
