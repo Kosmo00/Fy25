@@ -2,10 +2,11 @@
 
 import React from 'react'
 import { useFormik } from 'formik'
-import { toastErrorMessage } from '@/utils/toastUtils'
+import { toastErrorMessage, toastFastInfoMessage } from '@/utils/toastUtils'
 import Link from 'next/link'
 
 import { signIn } from "next-auth/react";
+import { useRouter } from 'next/navigation'
 
 const validate = values => {
     const errors = {}
@@ -18,7 +19,7 @@ const validate = values => {
 }
 
 function LoginForm() {
-
+    const router = useRouter()
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -26,13 +27,22 @@ function LoginForm() {
         },
         onSubmit: async values => {
             try {
-                const res = await signIn('credentials', {email: values.email, password: values.password, callbackUrl: '/'})
-                if(res?.status === 401){
+                const res = await signIn('credentials', {email: values.email, password: values.password, callbackUrl: '/', redirect: false})
+                .catch((err) => {
+                    console.log(err)
+                    toastErrorMessage('Error al iniciar sesión, por favor intente más tarde')
+                })
+                if(res.status === 401){
                     toastErrorMessage('Credenciales incorrectas')
+                }
+                else{
+                    toastFastInfoMessage('Autenticación exitosa')
+                    router.refresh()
                 }
             }
             catch (error) {
                 console.log(error)
+                toastErrorMessage('Error al iniciar sesión, por favor intente más tarde')
             }
         },
         validate

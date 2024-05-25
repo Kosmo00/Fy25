@@ -3,7 +3,7 @@ import { getToken } from 'next-auth/jwt'
 
 
 async function authorizeByRole(request: NextRequest){
-  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
+  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET, raw:true });
 }
 
 export async function middleware(request: NextRequest) {
