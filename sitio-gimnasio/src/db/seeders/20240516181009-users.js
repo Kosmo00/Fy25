@@ -116,7 +116,7 @@ const users = [
     phone: '00000005',
     notify_whatsapp: false,
     notify_email: false,
-    role_id: 4,
+    role_id: 2,
     verified_email: true,
     info: JSON.stringify({
       gym_id: 1,

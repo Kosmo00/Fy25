@@ -38,13 +38,13 @@ async function UserProfile(){
           <LeftSide user={user} role={session.user.role} />
         </div>
       </div>
-        <div className='bg-[#d5ebd4] h-[100vh] rounded-t-[40px] lg:rounded-t-none pt-[10vh]'>
-          {
-            session.user.role === 'athlete'
-            &&
-            <RightSide />
-          }
-        </div>
+      <div className='bg-[#d5ebd4] h-[100vh] rounded-t-[40px] lg:rounded-t-none pt-[10vh]'>
+        {
+          session.user.role === 'athlete'
+          &&
+          <RightSide />
+        }
+      </div>
     </div>
   )
 }
