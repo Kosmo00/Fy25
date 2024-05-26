@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { redisClient } from "@/app/redis/db";
+import { redisClient } from "@/redis/db";
 import { v4 as uuidv4 } from "uuid";
 import { getToken } from "next-auth/jwt";
 

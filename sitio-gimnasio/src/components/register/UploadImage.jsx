@@ -3,9 +3,9 @@ import React, { useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import Image from 'next/image';
 
-function UploadImage({ setImage, dontShowTopLabel }) {
+function UploadImage({ setImage, dontShowTopLabel, image }) {
 
-    const [imageUrl, setImageUrl] = useState('')
+    const [imageUrl, setImageUrl] = useState(image)
 
     const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
         accept: { 'image/*': [] },

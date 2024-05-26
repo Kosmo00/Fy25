@@ -6,15 +6,19 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import LogOutBtn from "./navbar/LogOutBtn";
 
-const links = [
-  
-];
-
 export const NavbarLinks = async () => {
   const session = await getServerSession(authOptions)
   if(session?.user){
+    const is_user_list_page_auth_role = session?.user?.role === 'admin' || session?.user?.role === 'reception'
     return(
       <>
+        {
+          is_user_list_page_auth_role
+          &&
+          <Link href='/user/list' className="cursor-pointer hover:scale-105 duration-100 mx-3 text-[#708064]">
+            Usuarios
+          </Link>
+        }
         <li className="nav-links px-5 cursor-pointer hover:scale-105 duration-100">
           <LogOutBtn />
         </li>
@@ -39,7 +43,6 @@ export const NavbarLinks = async () => {
 }
 
 const Navbar = async () => {
-  const navbarLinks = NavbarLinks 
   return (
     <div className="flex justify-between items-center w-full px-4 bg-[#1c1c23] fixed z-[5] shadow-lg">
       <div>
@@ -51,14 +54,6 @@ const Navbar = async () => {
       </div>
       <div className="flex">
         <ul className="hidden md:flex">
-          {links.map(({ id, link }) => (
-            <li
-              key={id}
-              className="nav-links px-5 cursor-pointer hover:scale-105 duration-100"
-            >
-              <Link href={link} className="text-[#708064]">{link}</Link>
-            </li>
-          ))}
           <NavbarLinks />
         </ul>
         <NavDropdown>
