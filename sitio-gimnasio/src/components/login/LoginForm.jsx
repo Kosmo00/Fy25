@@ -28,10 +28,6 @@ function LoginForm() {
         onSubmit: async values => {
             try {
                 const res = await signIn('credentials', {email: values.email, password: values.password, callbackUrl: '/', redirect: false})
-                .catch((err) => {
-                    console.log(err)
-                    toastErrorMessage('Error al iniciar sesión, por favor intente más tarde')
-                })
                 if(res.status === 401){
                     toastErrorMessage('Credenciales incorrectas')
                 }

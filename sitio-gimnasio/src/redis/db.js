@@ -1,10 +1,10 @@
 import { createClient } from "redis";
 
-const redisClient = await createClient({
-    password: '',
+const redisClient = createClient({
+    password: process.env.NEXT_PUBLIC_REDIS_PASSWORD,
     socket: {
-        host: 'localhost',
-        port: '6379'
+        host: process.env.NEXT_PUBLIC_REDIS_HOST,
+        port: process.env.NEXT_PUBLIC_REDIS_PORT
     }
 }) 
 

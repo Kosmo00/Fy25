@@ -53,7 +53,7 @@ function LeftSide({user, role}) {
         }
         <div className='mt-5'>
             <Link href={`/user/${user.CI}/edit`} className='text-xl block w-full bg-white text-black py-2 rounded-lg text-center'>Actualizar datos</Link>
-            <Link href='/' className='text-xl block w-full bg-white text-black py-2 rounded-lg text-center mt-5'>Cambiar contraseña</Link>
+            <Link href='/user/change_password' className='text-xl block w-full bg-white text-black py-2 rounded-lg text-center mt-5'>Cambiar contraseña</Link>
             <Link href='/' className='text-xl block w-full bg-white text-black py-2 rounded-lg text-center mt-5'>Registros</Link>
         </div>
     </div>
