@@ -21,9 +21,9 @@ export async function POST(req) {
     }
 }
 export async function PUT(req) {
-    const { id, email, password } = await req.json()
+    const { email, password } = await req.json()
     const pwd = await bcrypt.hash(password, 10);
-    const updated = await User.update({ password: pwd }, { where: { id, email } })
+    const updated = await User.update({ password: pwd }, { where: { email } })
     if(updated[0] === 1) {
         return Response.json({ message: "Contraseña cambiada" }, {
             status: 200

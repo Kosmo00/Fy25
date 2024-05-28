@@ -77,14 +77,14 @@ function Opt3() {
         <div className='principal-bg py-10 grid lg:grid-cols-2 grid-cols-1'>
             <div>
                 <Image 
-                    className='bg-green-500 lg:ml-[25vw] home-area-card lg:mb-[220px] mx-auto' 
+                    className='bg-green-500 lg:ml-[25vw] home-area-card lg:mb-[220px] mx-auto rounded-lg' 
                     src='/foto12.jpeg'
                     width={450}
                     height={150}
                     alt='foto12'
                 />
                 <Image 
-                    className='bg-green-500 lg:ml-[25vw] home-area-card mt-7 mx-auto'
+                    className='bg-green-500 lg:ml-[25vw] home-area-card mt-7 mx-auto rounded-lg'
                     src='/foto11.jpeg'
                     width={450}
                     height={150}
@@ -92,14 +92,14 @@ function Opt3() {
                 />
             </div>
             <div>
-                <Image className='bg-green-500 lg:mt-[185px] lg:ml-[-10vh] home-area-card mt-7 mx-auto' 
+                <Image className='bg-green-500 lg:mt-[185px] lg:ml-[-10vh] home-area-card mt-7 mx-auto rounded-lg' 
                     src='/foto13.jpg'
                     width={450}
                     height={150}
                     alt='foto13'  
                 />
                 <Image 
-                    className='bg-green-500 lg:mt-[220px] lg:ml-[-10vh] home-area-card mt-7 mx-auto'
+                    className='bg-green-500 lg:mt-[220px] lg:ml-[-10vh] home-area-card mt-7 mx-auto rounded-lg'
                     src='/foto10.jpeg'
                     width={450}
                     height={150}

@@ -10,7 +10,6 @@
     "test": "ava"
   },
   "dependencies": {
-    "@yudiel/react-qr-scanner": "^2.0.0-beta.3",
     "axios": "^1.6.8",
     "bcryptjs": "^2.4.3",
     "formik": "^2.4.6",
@@ -21,6 +20,7 @@
     "nodemailer": "^6.9.13",
     "pg": "^8.11.5",
     "pg-hstore": "^2.3.4",
+    "qr-scanner": "^1.4.2",
     "qrcode.react": "^3.1.0",
     "react": "^18",
     "react-dom": "^18",
