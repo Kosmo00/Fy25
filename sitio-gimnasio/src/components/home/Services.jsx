@@ -29,13 +29,13 @@ function Opt1() {
             actualPos++
         }, 250);
         return () => clearInterval(intervalo);
-      }, []);
+    }, []);
 
     return (
         <>
-            <div 
+            <div
                 className='flex justify-center items-center bg-[#404040] text-white text-xl lg:text-2xl lg:p-7 p-4'
-                style={{ whiteSpace: 'nowrap', overflowX: 'hidden'}}
+                style={{ whiteSpace: 'nowrap', overflowX: 'hidden' }}
             >
                 {isMovile ? currentString : text.substring(0, text.length - 1)}
             </div>
@@ -43,68 +43,105 @@ function Opt1() {
     )
 }
 
-function Opt2() {
+function Opt3() {
     return (
-        <div className='bg-black py-4 px-8'>
-            <div className='border-white border rounded-3xl overflow-hidden'>
-                <div 
-                    className='flex justify-center items-center bg-gray-200'
-                    style={{height: '50px'}}
-                >
-                    <p className='font-bold text-2xl'>
-                        ÁREAS
-                    </p>
-                </div>
-                <div className='grid lg:grid-cols-2 grid-cols-1'>
-                    <div className='bg-black flex justify-center items-center' style={{height: '150px'}}>
-                        <p className='text-white text-2xl'>
+        <div className='principal-bg py-5 flex flex-col items-center'>
+            <div className='flex my-5'>
+                <div className='w-[45vw] h-[200px] relative'>
+                    <div class="absolute inset-0 z-5 backdrop-filter backdrop-blur-sm bg-black/30 flex justify-center items-center">
+                        <p className='text-2xl font-bold text-white'>
                             SPINNING
                         </p>
                     </div>
-                    <div className='flex justify-center items-center bg-green-100' style={{height: '150px'}}>
-                        <p className='text-2xl'>
-                            MUSCULATURA
-                        </p>
-                    </div>
+                    <Image
+                        className='bg-green-500 mx-auto rounded-lg'
+                        style={styles.imgFluid}
+                        src='/foto12.jpeg'
+                        width={450}
+                        height={150}
+                        alt='foto12'
+                    />
+                </div>
+                <div className='w-[35vw] h-[200px] flex items-center justify-start'>
+                    <p className='ml-5 text-xl font-medium text-white'>
+                        Zona de bicicletas estáticas,
+                        complementa tu rutina con
+                        un ejercicio dinámico
+                    </p>
+
                 </div>
             </div>
-        </div>
-    )
-}
-
-function Opt3() {
-    return (
-        <div className='principal-bg py-10 grid lg:grid-cols-2 grid-cols-1'>
-            <div>
-                <Image 
-                    className='bg-green-500 lg:ml-[25vw] home-area-card lg:mb-[220px] mx-auto rounded-lg' 
-                    src='/foto12.jpeg'
-                    width={450}
-                    height={150}
-                    alt='foto12'
-                />
-                <Image 
-                    className='bg-green-500 lg:ml-[25vw] home-area-card mt-7 mx-auto rounded-lg'
-                    src='/foto11.jpeg'
-                    width={450}
-                    height={150}
-                    alt='foto11'    
-                />
+            <div className='flex my-5'>
+                <div className='w-[35vw] h-[200px] flex items-center justify-end'>
+                    <p className='mr-5 text-xl font-medium text-white'>
+                        La zona perfecta para
+                        desarrollar tus músculos
+                    </p>
+                </div>
+                <div className='w-[45vw] h-[200px] relative'>
+                    <div class="absolute inset-0 z-5 backdrop-filter backdrop-blur-sm bg-black/30 flex justify-center items-center">
+                        <p className='text-2xl font-bold text-white'>
+                            MUSCULACIÓN
+                        </p>
+                    </div>
+                    <Image
+                        className='bg-green-500 mx-auto rounded-lg'
+                        style={styles.imgFluid}
+                        src='/foto11.jpeg'
+                        width={450}
+                        height={150}
+                        alt='foto11'
+                    />
+                </div>
             </div>
-            <div>
-                <Image className='bg-green-500 lg:mt-[185px] lg:ml-[-10vh] home-area-card mt-7 mx-auto rounded-lg' 
-                    src='/foto13.jpg'
-                    width={450}
-                    height={150}
-                    alt='foto13'  
-                />
-                <Image 
-                    className='bg-green-500 lg:mt-[220px] lg:ml-[-10vh] home-area-card mt-7 mx-auto rounded-lg'
-                    src='/foto10.jpeg'
-                    width={450}
-                    height={150}
-                    alt='foto10' 
-                />
+            <div className='flex my-5'>
+                <div className='w-[45vw] h-[200px] relative'>
+                    <div class="absolute inset-0 z-5 backdrop-filter backdrop-blur-sm bg-black/30 flex justify-center items-center">
+                        <p className='text-2xl font-bold text-white'>
+                            ACTIVIDADES
+                        </p>
+                    </div>
+                    <Image
+                        className='bg-green-500  mx-auto rounded-lg'
+                        style={styles.imgFluid}
+                        src='/foto13.jpg'
+                        width={450}
+                        height={150}
+                        alt='foto13'
+                    />
+                </div>
+                <div className='w-[35vw] h-[200px] flex items-center justify-end'>
+                    <p className='ml-5 text-xl font-medium text-white'>
+                        Participamos en eventos
+                        de diversas modalidades.
+                        Maratones, ciclismo y mucho más
+                    </p>
+                </div>
+
+            </div>
+            <div className='flex my-5'>
+                <div className='w-[35vw] h-[200px] flex items-center justify-end'>
+                    <p className='mr-5 text-xl font-medium text-white'>
+                        Actividades al aire libre,
+                        ejercicio en un entorno diferente
+                    </p>
+                </div>
+                <div className='w-[45vw] h-[200px] relative'>
+                    <div class="absolute inset-0 z-5 backdrop-filter backdrop-blur-sm bg-black/30 flex justify-center items-center">
+                        <p className='text-2xl font-bold text-white'>
+                            OUTDOOR
+                        </p>
+                    </div>
+                    <Image
+                        className='bg-green-500  mx-auto rounded-lg'
+                        style={styles.imgFluid}
+                        src='/foto10.jpeg'
+                        width={450}
+                        height={150}
+                        alt='foto10'
+                    />
+                </div>
+
             </div>
         </div>
     )
@@ -112,3 +149,12 @@ function Opt3() {
 
 
 export default Services
+
+const styles = {
+    imgFluid: {
+        width: "100%",
+        height: "100%",
+        borderRadius: 12,
+        objectFit: 'cover'
+    }
+}
