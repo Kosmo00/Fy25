@@ -6,7 +6,7 @@ import Image from 'next/image'
 function LeftSide({user, role}) {
   return (
     <>
-    <div className='px-10 mt-10'>
+    <div className='px-10 mt-10 sm:w-[500px]'>
         <div className='flex'>
             <div className='block pr-5'>
             <Image src={user.profile_image} alt="Foto de perfil" className='rounded-lg border-dashed border-[5px]' width={200} height={200} />
