@@ -48,7 +48,7 @@ function Opt3() {
         <div className='principal-bg py-5 flex flex-col items-center'>
             <div className='flex my-5'>
                 <div className='w-[45vw] h-[200px] relative'>
-                    <div class="absolute inset-0 z-5 backdrop-filter backdrop-blur-sm bg-black/30 flex justify-center items-center">
+                    <div className="absolute inset-0 z-5 backdrop-filter backdrop-blur-sm bg-black/30 flex justify-center items-center">
                         <p className='text-2xl font-bold text-white'>
                             SPINNING
                         </p>
@@ -79,7 +79,7 @@ function Opt3() {
                     </p>
                 </div>
                 <div className='w-[45vw] h-[200px] relative'>
-                    <div class="absolute inset-0 z-5 backdrop-filter backdrop-blur-sm bg-black/30 flex justify-center items-center">
+                    <div className="absolute inset-0 z-5 backdrop-filter backdrop-blur-sm bg-black/30 flex justify-center items-center">
                         <p className='text-2xl font-bold text-white'>
                             MUSCULACIÓN
                         </p>
@@ -96,7 +96,7 @@ function Opt3() {
             </div>
             <div className='flex my-5'>
                 <div className='w-[45vw] h-[200px] relative'>
-                    <div class="absolute inset-0 z-5 backdrop-filter backdrop-blur-sm bg-black/30 flex justify-center items-center">
+                    <div className="absolute inset-0 z-5 backdrop-filter backdrop-blur-sm bg-black/30 flex justify-center items-center">
                         <p className='text-2xl font-bold text-white'>
                             ACTIVIDADES
                         </p>
@@ -127,7 +127,7 @@ function Opt3() {
                     </p>
                 </div>
                 <div className='w-[45vw] h-[200px] relative'>
-                    <div class="absolute inset-0 z-5 backdrop-filter backdrop-blur-sm bg-black/30 flex justify-center items-center">
+                    <div className="absolute inset-0 z-5 backdrop-filter backdrop-blur-sm bg-black/30 flex justify-center items-center">
                         <p className='text-2xl font-bold text-white'>
                             OUTDOOR
                         </p>
@@ -150,7 +150,7 @@ function Opt3() {
 
 export default Services
 
-const styles = {
+export const styles = {
     imgFluid: {
         width: "100%",
         height: "100%",

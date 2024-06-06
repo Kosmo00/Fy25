@@ -73,7 +73,7 @@ function LoginForm() {
                     onChange={formik.handleChange}
                 />
                 {formik.errors.password && <label className='text-red-500 label'>{formik.errors.password}</label>}
-                <Link className='text-black hover:text-[0.87rem] text-sm mt-3 underline' href='/'>¿Olvidaste tu contraseña?</Link>
+                <Link className='text-black hover:text-[0.87rem] text-sm mt-3 underline' href='/auth/lost_password'>¿Olvidaste tu contraseña?</Link>
             </div>
             <button 
                 type='submit'
