@@ -24,16 +24,16 @@ const CarouselComponent = ({ images, autoplayDelay, reverseDirection = false }) 
         setNumberOfSlides(isMovile ? SLIDES_IN_MOVILE : SLIDES_IN_DESKTOP)
     })
 
-    const handleClick = () => {
-        setShow(!show)
-    }
-    const handlePrev = () => {
-        swiperRef.current.swiper.slidePrev()
-    };
+    // const handleClick = () => {
+    //     setShow(!show)
+    // }
+    // const handlePrev = () => {
+    //     swiperRef.current.swiper.slidePrev()
+    // };
 
-    const handleNext = () => {
-        swiperRef.current.swiper.slideNext()
-    };
+    // const handleNext = () => {
+    //     swiperRef.current.swiper.slideNext()
+    // };
     return (
         <Swiper
             loop={true}
@@ -72,9 +72,9 @@ const CarouselComponent = ({ images, autoplayDelay, reverseDirection = false }) 
                             className="w-full h-full object-cover m-auto"
                             width={500}
                             height={500} />}
-                        {show && <div className="absolute top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.5)] flex justify-center items-center">
+                        {/* {show && <div className="absolute top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.5)] flex justify-center items-center">
                             <p className="text-white text-xl text-center">{image.txt}</p>
-                        </div>}
+                        </div>} */}
                     </div>
                 </SwiperSlide>
             ))}
