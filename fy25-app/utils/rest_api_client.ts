@@ -16,6 +16,7 @@ RestApiClient.interceptors.request.use(
 		// const token = await localServices.getAccessToken();
 		
 		const token = process.env.EXPO_PUBLIC_ACCESS_TOKEN;
+		console.log('token seteado: ', token)
 		if (token) {
 			req.headers.Authorization = `Bearer ${token}`;
 		}
