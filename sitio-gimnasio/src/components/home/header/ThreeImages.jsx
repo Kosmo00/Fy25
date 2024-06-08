@@ -29,7 +29,7 @@ function ThreeImages() {
                 alt="Imagen no cargada"
                 height={imageHeight1}
                 width={imageWidth1}
-                style={{height: `${imageHeight1}px`, transform: 'rotateY(180deg)'}}
+                style={{height: `${imageHeight1}px`, transform: 'rotateY(180deg)', objectFit: 'cover'}}
                 className='rounded-xl'
             />
             <Image 
@@ -40,7 +40,8 @@ function ThreeImages() {
                 style={{
                         marginTop:`-${(imageScale === MAX_IMAGE_SIZE ? 80 : 60)}px`, 
                         marginLeft: `${(imageWidth1 - (imageScale === MAX_IMAGE_SIZE ? 50 : 35))}px`, 
-                        height: `${ imageHeight2 }px`, transform: 'rotateY(360deg)'
+                        height: `${ imageHeight2 }px`, transform: 'rotateY(360deg)', 
+                        objectFit: 'cover'
                        }}
                 className='rounded-xl'
             />
@@ -52,7 +53,9 @@ function ThreeImages() {
                 style={{
                         marginTop:`-${(imageHeight2 + imageHeight3 + 10)}px`, 
                         marginLeft: `${ (imageWidth1 + 10)}px`, 
-                        height: `${ imageHeight3 }px`}}
+                        height: `${ imageHeight3 }px`, 
+                        objectFit: 'cover'
+                    }}
                 className='rounded-xl'
             />
         </>

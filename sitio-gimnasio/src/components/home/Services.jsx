@@ -150,7 +150,7 @@ function Opt3() {
 
 export default Services
 
-const styles = {
+export const styles = {
     imgFluid: {
         width: "100%",
         height: "100%",
