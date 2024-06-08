@@ -2,7 +2,7 @@ import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 import LocalService from "@/services/local_service";
 
 const localServices = new LocalService();
-const apiUrl = process.env.EXPO_PUBLIC_API_URL;
+const apiUrl = process.env.EXPO_PUBLIC_API_URL
 
 const RestApiClient = axios.create({
 	baseURL: `${apiUrl}`,
@@ -13,7 +13,10 @@ const RestApiClient = axios.create({
 
 RestApiClient.interceptors.request.use(
 	async function (req: InternalAxiosRequestConfig<unknown>) {
-		const token = await localServices.getAccessToken();
+		// const token = await localServices.getAccessToken();
+		
+		const token = process.env.EXPO_PUBLIC_ACCESS_TOKEN;
+		console.log('token seteado: ', token)
 		if (token) {
 			req.headers.Authorization = `Bearer ${token}`;
 		}

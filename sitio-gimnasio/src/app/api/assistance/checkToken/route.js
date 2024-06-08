@@ -13,6 +13,7 @@ async function getToken(email){
 
 export async function POST(req){
     const { assistance_token, authorization, serviceName} = req.json()
+    console.log(":::::::::::::::::", assistance_token,  authorization, serviceName)
     try{
         const splitted_token = assistance_token.split(QR_TOKEN_SEPARATOR)
         if(splitted_token.length !== 2){
