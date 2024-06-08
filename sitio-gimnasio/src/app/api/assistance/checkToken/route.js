@@ -13,6 +13,16 @@ async function getToken(email){
 
 export async function POST(req){
     const { assistance_token, authorization, serviceName} = req.json()
+    try{
+        const splitted_token = assistance_token.split(QR_TOKEN_SEPARATOR)
+        if(splitted_token.length !== 2){
+            return NextResponse.json({message: 'Token inválido', status: 401})
+        }
+    }
+    catch(err){
+        console.log(err)
+        return NextResponse.json({message: 'Token inválido', status: 401})
+    }
     const [email, token] = assistance_token.split(QR_TOKEN_SEPARATOR)
     if(authorization !== process.env.REACT_NATIVE_SECRET){
         return NextResponse.json({message: 'No se encuentra autorizado para realizar esta operación'})
