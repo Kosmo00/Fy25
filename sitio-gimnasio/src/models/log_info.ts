@@ -1,12 +1,12 @@
 
 /*
-    This log is used for queries that adds money to athlethes accounts
+    This log is used for queries that adds money to athletes accounts
 */
-export interface AthletheAssistanceLog {
+export interface AthleteAssistanceLog {
     collector_id: string
     collector_name: string
-    athlethe_id: string
-    athlethe_name: string
+    athlete_id: string
+    athlete_name: string
     amount: number
 }
 
@@ -23,13 +23,13 @@ export interface TrainerPaymentLog {
 }
 
 /*
-    This log is used for queries that collect money to athlethes accounts
+    This log is used for queries that collect money to athletes accounts
 */
-export interface AthletheCollectLog {
+export interface AthleteCollectLog {
     collector_id: string
     collector_name: string
-    athlethe_id: string
-    athlethe_name: string
+    athlete_id: string
+    athlete_name: string
     amount: number
     service: string
 }
@@ -49,6 +49,6 @@ export interface RollbackLog {
 export interface CraeteUserLog {
     collector_id: string
     collector_name: string
-    athlethe_id: string
-    athlethe_name: string
+    athlete_id: string
+    athlete_name: string
 }

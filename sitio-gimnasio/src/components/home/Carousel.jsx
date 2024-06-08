@@ -23,17 +23,6 @@ const CarouselComponent = ({ images, autoplayDelay, reverseDirection = false }) 
     isMovileHook(isMovile => {
         setNumberOfSlides(isMovile ? SLIDES_IN_MOVILE : SLIDES_IN_DESKTOP)
     })
-
-    // const handleClick = () => {
-    //     setShow(!show)
-    // }
-    // const handlePrev = () => {
-    //     swiperRef.current.swiper.slidePrev()
-    // };
-
-    // const handleNext = () => {
-    //     swiperRef.current.swiper.slideNext()
-    // };
     return (
         <Swiper
             loop={true}
@@ -48,13 +37,8 @@ const CarouselComponent = ({ images, autoplayDelay, reverseDirection = false }) 
                 reverseDirection: reverseDirection
             }}
             pagination={{ clickable: true }}
-            // navigation={{
-            //     prevEl: '.swiper-button-prev',
-            //     nextEl: '.swiper-button-next',
-            // }}
             
             className="h-[200px] md:h-[250px] lg:h-[300px] mx-auto"
-            // onClick={handleClick}
         >
 
 
@@ -65,25 +49,15 @@ const CarouselComponent = ({ images, autoplayDelay, reverseDirection = false }) 
                         <Image
                             src={image.src}
                             alt={`slide-${index}`}
-                            // onLoadedData={() => setLoading(false)}
                             onLoad={()=> setLoading(false)}
                             onLoadStart={() => setLoading(true)}
                             priority
                             className="w-full h-full object-cover m-auto"
                             width={500}
                             height={500} />}
-                        {/* {show && <div className="absolute top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.5)] flex justify-center items-center">
-                            <p className="text-white text-xl text-center">{image.txt}</p>
-                        </div>} */}
                     </div>
                 </SwiperSlide>
             ))}
-            {/* {images.length > 1 && <div>
-                <div className="swiper-button-prev" style={{color: 'white !important'}} onClick={handlePrev}></div>
-                <div className="swiper-button-next" style={{color: 'white !important'}} onClick={handleNext}></div>
-            </div>
-
-            } */}
         </Swiper >
     );
 };

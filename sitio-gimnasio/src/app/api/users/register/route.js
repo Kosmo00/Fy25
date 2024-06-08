@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { sendMail } from '@/utils/utils';
 import { saveFile } from '../saveProfileImage';
 import { insertUserInDatabase } from '../createUser';
-import { default_athlethe_info } from '@/models/user_info';
+import { default_athlete_info } from '@/models/user_info';
 
 export async function POST(req) {
     const form = await req.formData()
@@ -23,7 +23,7 @@ export async function POST(req) {
         formData[pair[0]] = pair[1]
     }
     formData['file'] = filename
-    formData['info'] = default_athlethe_info
+    formData['info'] = default_athlete_info
     let idOrDuplicated_fields
     try {
         idOrDuplicated_fields = await insertUserInDatabase(formData)

@@ -4,7 +4,7 @@ const DB_NAME = 'LogTypes'
 
 const log_types = [
   {
-    name: 'AthletheRechargeLog',
+    name: 'AthleteRechargeLog',
     createdAt: new Date(),
     updatedAt: new Date(),
 
@@ -15,7 +15,7 @@ const log_types = [
     updatedAt: new Date(),
   },
   {
-    name: 'AthletheAssistanceLog',
+    name: 'AthleteAssistanceLog',
     createdAt: new Date(),
     updatedAt: new Date(),
   },

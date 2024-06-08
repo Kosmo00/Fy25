@@ -36,8 +36,8 @@ export async function POST(req){
                 info: {
                     collector_id: collector.id,
                     collector_name: collector.name,
-                    athlethe_id: user.id,
-                    athlethe_name: user.name,
+                    athlete_id: user.id,
+                    athlete_name: user.name,
                     amount
                 }
             },
