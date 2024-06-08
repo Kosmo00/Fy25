@@ -49,7 +49,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <AuthModal authModal={authModal} setAuthModal={setAuthModal}/>
+      {/* <AuthModal authModal={authModal} setAuthModal={setAuthModal}/> */}
       {camera &&
         <CameraView
           onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
