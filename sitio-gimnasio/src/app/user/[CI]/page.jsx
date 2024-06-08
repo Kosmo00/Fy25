@@ -9,7 +9,7 @@ import ActionsOverUsers from '@/components/user/ActionsOverUsers'
 
 async function getUserByCI(CI){
     try{
-        const user = await User.findOne({where: {CI}, raw: true, include: 'role', attributes: ['name', 'lastname', 'info', 'email', 'CI', 'profile_image', 'phone']})
+        const user = await User.findOne({where: {CI}, raw: true, include: 'role', attributes: ['id', 'name', 'lastname', 'info', 'email', 'CI', 'profile_image', 'phone']})
         return user
     } catch(err){
         console.log(err)

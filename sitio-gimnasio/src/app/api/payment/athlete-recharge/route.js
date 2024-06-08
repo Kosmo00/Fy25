@@ -15,14 +15,16 @@ export async function POST(req){
             include: 'role'
         })
         if(!user){
+            console.log('Usuario no encontrado')
             return NextResponse.json({message: 'Usuario no encontrado', status: 404})
         }
-        if(user.role.name !== 'athlethe'){
+        if(user.role.name !== 'athlete'){
+            console.log('Usuario no atleta')
             return NextResponse.json({message: 'El usuario a recargar no es un atleta', status: 400})
         }
         
-        user.info.amount_charged += amount
-        await user.update({info: user.info}, {transaction: t})
+        user.info.deposited_money += amount * 100
+        await User.update({info: user.info}, { where: {id: user.id}, transaction: t})
         await Log.create(
             {
                 log_type_id: 1,
@@ -30,9 +32,9 @@ export async function POST(req){
                 info: {
                     collector_id,
                     collector_name,
-                    athlethe_id: user.id,
-                    athlethe_name: user.name,
-                    amount
+                    athlete_id: user.id,
+                    athlete_name: user.name,
+                    amount: amount * 100
                 }
             },
             {

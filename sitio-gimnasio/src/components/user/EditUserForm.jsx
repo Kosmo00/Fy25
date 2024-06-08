@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { toastErrorMessage, toastInfoMessage } from '@/utils/toastUtils'
 import { useFormik } from 'formik'
 import UploadImage from '@/components/register/UploadImage'

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server"
 import { saveFile } from "../saveProfileImage"
 import Role from "@/db/models/role"
 import passwordGenerator from "generate-password"
-import { default_admin_info, default_athlethe_info, default_qr_info, default_reception_info, default_trainer_info } from '@/models/user_info';
+import { default_admin_info, default_athlete_info, default_qr_info, default_reception_info, default_trainer_info } from '@/models/user_info';
 import { insertUserInDatabase } from "../createUser"
 import { sendMail } from "@/utils/utils"
 import User from "@/db/models/user"
@@ -42,7 +42,7 @@ async function prepareFormData(formData, token){
     }
     switch(formData.role){
         case 1: 
-            formData.info = default_athlethe_info
+            formData.info = default_athlete_info
             break
         case 2:
             formData.info = default_qr_info
@@ -57,7 +57,7 @@ async function prepareFormData(formData, token){
             formData.info = default_trainer_info
             break
         default:
-            formData.info = default_athlethe_info
+            formData.info = default_athlete_info
     }
 }
 

@@ -1,4 +1,4 @@
-export interface AthletheInfo{
+export interface AthleteInfo{
     deposited_money: number
     payed_money: number
     discount_percent: number
@@ -19,7 +19,7 @@ export interface TrainerInfo{
     earn_per_session: number
 }
 
-export const default_athlethe_info = {
+export const default_athlete_info = {
     deposited_money: 0,
     payed_money: 0,
     discount_percent: 0

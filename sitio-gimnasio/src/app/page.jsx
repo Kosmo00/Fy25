@@ -6,9 +6,9 @@ import About from "@/components/home/About";
 import ContactUs from "@/components/home/ContactUs";
 
 const images = [
-  {src: '/foto2.jpeg'}, 
-  {src: '/foto3.jpg'},
-  {src: '/foto4.jpeg'},
+  {src: '/image5.jpeg'},
+  {src: '/gym3.jpeg'}, 
+  {src: '/image7.webp'},
   {src: '/gym.jpeg'},
   {src: '/gym2.png'},
 ]

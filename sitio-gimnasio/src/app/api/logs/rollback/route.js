@@ -23,16 +23,16 @@ async function createRollbackLog(token, transaction, log_id){
     return NextResponse.json({message: 'Operación revertida con éxito', status: 200})
 }
 
-async function rollbackAthletheAssistance(log, token, transaction){
+async function rollbackAthleteAssistance(log, token, transaction){
     const amount = log.info.amount
-    const athlethe_id = log.athlethe_id
+    const athlete_id = log.athlete_id
     
-    const user = await User.findByPk(athlethe_id, {include: 'role'})
+    const user = await User.findByPk(athlete_id, {include: 'role'})
     
     if(!user){
         return NextResponse.json({message: `Atleta no encontrado`, status: 404})
     }
-    if(user.role.name !== 'athlethe'){
+    if(user.role.name !== 'athlete'){
         return NextResponse.json({message: `El rol del usuario del registro no es atleta`, status: 404})
     }
     user.info.payed_money -= amount
@@ -40,16 +40,16 @@ async function rollbackAthletheAssistance(log, token, transaction){
     return await createRollbackLog(token, transaction, log_id)
 }   
 
-async function rollbackAthletheRecharge(log, token, transaction){
+async function rollbackAthleteRecharge(log, token, transaction){
     const amount = log.info.amount
-    const athlethe_id = log.athlethe_id
+    const athlete_id = log.athlete_id
     
-    const user = await User.findByPk(athlethe_id, {include: 'role'})
+    const user = await User.findByPk(athlete_id, {include: 'role'})
     
     if(!user){
         return NextResponse.json({message: `Atleta no encontrado`, status: 404})
     }
-    if(user.role.name !== 'athlethe'){
+    if(user.role.name !== 'athlete'){
         return NextResponse.json({message: `El rol del usuario del registro no es atleta`, status: 404})
     }
     user.info.deposited_money -= amount
@@ -86,12 +86,12 @@ export async function POST(req){
             return NextResponse.json({message: 'Registro no encontrado', status: 404})
         }
         switch(log.logType.name){
-            case 'AthletheRechargeLog':
-                return await rollbackAthletheRecharge(log, token, transaction)
+            case 'AthleteRechargeLog':
+                return await rollbackAthleteRecharge(log, token, transaction)
             case 'TrainerPaymentLog':
                 return await rollbackTrainerPayment(log, token, transaction)
-            case 'AthletheAssistanceLog':
-                return await rollbackAthletheAssistance(log, token, transaction)
+            case 'AthleteAssistanceLog':
+                return await rollbackAthleteAssistance(log, token, transaction)
             default: 
                 return NextResponse.json({message: 'La operación no es revertible', status: 403})
             }
