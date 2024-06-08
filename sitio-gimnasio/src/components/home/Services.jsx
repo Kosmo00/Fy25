@@ -48,13 +48,13 @@ function Opt3() {
         <div className='principal-bg py-5 flex flex-col items-center'>
             <div className='flex my-5'>
                 <div className='w-[45vw] h-[200px] relative'>
-                    <div className="absolute inset-0 z-5 backdrop-filter backdrop-blur-sm bg-black/30 flex justify-center items-center">
-                        <p className='text-2xl font-bold text-white'>
+                    <div className="absolute inset-0 z-5 bg-black/70 hover:bg-black/95 transition duration-300 ease-out rounded-lg flex justify-center items-center">
+                        <p className='text-xl sm:text-2xl font-bold text-white'>
                             SPINNING
                         </p>
                     </div>
                     <Image
-                        className='bg-green-500 mx-auto rounded-lg'
+                        className='mx-auto rounded-lg'
                         style={styles.imgFluid}
                         src='/foto12.jpeg'
                         width={450}
@@ -79,15 +79,15 @@ function Opt3() {
                     </p>
                 </div>
                 <div className='w-[45vw] h-[200px] relative'>
-                    <div className="absolute inset-0 z-5 backdrop-filter backdrop-blur-sm bg-black/30 flex justify-center items-center">
-                        <p className='text-2xl font-bold text-white'>
+                    <div className="absolute inset-0 z-5 bg-black/70 hover:bg-black/95 transition duration-300 ease-out flex justify-center items-center rounded-lg">
+                        <p className='text-xl sm:text-2xl font-bold text-white'>
                             MUSCULACIÓN
                         </p>
                     </div>
                     <Image
-                        className='bg-green-500 mx-auto rounded-lg'
+                        className='mx-auto rounded-lg'
                         style={styles.imgFluid}
-                        src='/foto11.jpeg'
+                        src='/foto13.jpg'
                         width={450}
                         height={150}
                         alt='foto11'
@@ -96,15 +96,15 @@ function Opt3() {
             </div>
             <div className='flex my-5'>
                 <div className='w-[45vw] h-[200px] relative'>
-                    <div className="absolute inset-0 z-5 backdrop-filter backdrop-blur-sm bg-black/30 flex justify-center items-center">
-                        <p className='text-2xl font-bold text-white'>
+                    <div className="absolute inset-0 z-5 bg-black/70 hover:bg-black/95 transition duration-300 ease-out rounded-lg flex justify-center items-center">
+                        <p className='text-xl sm:text-2xl font-bold text-white'>
                             ACTIVIDADES
                         </p>
                     </div>
                     <Image
-                        className='bg-green-500  mx-auto rounded-lg'
+                        className=' mx-auto rounded-lg'
                         style={styles.imgFluid}
-                        src='/foto13.jpg'
+                        src='/foto11.jpeg'
                         width={450}
                         height={150}
                         alt='foto13'
@@ -127,13 +127,13 @@ function Opt3() {
                     </p>
                 </div>
                 <div className='w-[45vw] h-[200px] relative'>
-                    <div className="absolute inset-0 z-5 backdrop-filter backdrop-blur-sm bg-black/30 flex justify-center items-center">
-                        <p className='text-2xl font-bold text-white'>
+                    <div className="absolute inset-0 z-5 bg-black/70 hover:bg-black/95 transition duration-300 ease-out rounded-lg flex justify-center items-center">
+                        <p className='text-xl sm:text-2xl font-bold text-white'>
                             OUTDOOR
                         </p>
                     </div>
                     <Image
-                        className='bg-green-500  mx-auto rounded-lg'
+                        className=' mx-auto rounded-lg'
                         style={styles.imgFluid}
                         src='/foto10.jpeg'
                         width={450}
