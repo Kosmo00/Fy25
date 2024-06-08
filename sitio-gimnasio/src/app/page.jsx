@@ -30,24 +30,6 @@ export default function Home({carouselImages}) {
       <Social />
       <About />
       <ContactUs />
-      {/* <div>
-        header
-        <div>
-          carousel
-        </div>
-        end header
-      </div>
-      <div>
-        about us
-        end about us
-      </div>
-      <div>
-        ...
-      </div>
-      <div>
-        contact us
-        end contact us
-      </div> */}
     </div>
   );
 }

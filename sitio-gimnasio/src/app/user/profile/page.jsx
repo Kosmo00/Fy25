@@ -14,7 +14,6 @@ async function getUserData(email){
     delete user['updatedAt']
     delete user['createdAt']
     delete user['role_id']
-    console.log(user.info)
     return user
   }catch(err){
     console.log(err)

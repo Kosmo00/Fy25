@@ -6,7 +6,7 @@ import Image from 'next/image'
 function LeftSide({user, role}) {
   return (
     <>
-    <div className='px-10 mt-10 sm:w-[500px]'>
+    <div className='px-10 mt-10 flex flex-col items-center'>
         <div className='flex'>
             <div className='block pr-5'>
             <Image src={user.profile_image} alt="Foto de perfil" className='rounded-lg border-dashed border-[5px]' width={200} height={200} />
@@ -16,6 +16,8 @@ function LeftSide({user, role}) {
             <p>{user.lastname}</p>
             </div>
         </div>
+        <div>
+
         <div className='mt-10 md:text-2xl text-lg'>
             <input className='text-black text-xl p-2 bg-white w-full rounded-md' type='email' value={user.email} disabled/>
         </div>
@@ -55,6 +57,7 @@ function LeftSide({user, role}) {
             <Link href={`/user/${user.CI}/edit`} className='text-xl block w-full bg-white text-black py-2 rounded-lg text-center'>Actualizar datos</Link>
             <Link href='/user/change_password' className='text-xl block w-full bg-white text-black py-2 rounded-lg text-center mt-5'>Cambiar contraseña</Link>
             <Link href='/' className='text-xl block w-full bg-white text-black py-2 rounded-lg text-center mt-5'>Registros</Link>
+        </div>
         </div>
     </div>
     </>
