@@ -9,7 +9,7 @@ import RestApiClient from '@/utils/rest_api_client'
 import { ApiEndpoint } from '@/utils/rest_api_config'
 
 const selectValues = [
-  { value: 'athlethe', label: 'Atleta' },
+  { value: 'athlete', label: 'Atleta' },
   { value: 'trainer', label: 'Entrenador' },
   { value: 'admin', label: 'Administrador' },
   { value: 'reception', label: 'Recepcionista' },

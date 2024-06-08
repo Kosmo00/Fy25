@@ -3,7 +3,7 @@ import { redisClient } from "@/redis/db";
 import { v4 as uuidv4 } from "uuid";
 import { getToken } from "next-auth/jwt";
 
-const REDIS_ASSISTANCE_TOKEN_PREFIX = 'assistanceToken'
+import { QR_TOKEN_SEPARATOR, REDIS_ASSISTANCE_TOKEN_PREFIX } from "../constrains";
 
 function isAuthorized(token){
     return token.role === 'athlete'
@@ -24,7 +24,7 @@ export async function GET(req){
         if (!isAuthorized(token)){
             return NextResponse.json({message: 'Su usuario no está autorizado para realizar la operación actual'})
         }
-        const assistanceToken = await createToken(token.email)
+        const assistanceToken = token.email + QR_TOKEN_SEPARATOR + await createToken(token.email)
         return NextResponse.json({data: {token: assistanceToken}, status: 200})
     } catch(err){
         console.log(err)

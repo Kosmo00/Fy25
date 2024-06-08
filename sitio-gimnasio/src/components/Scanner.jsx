@@ -15,10 +15,12 @@ const QrScannerComponent = () => {
 
   useEffect(() => {
     if (state) {
-
+      if(!navigator.mediaDevices?.getUserMedia){
+        throw new Error("No soporta camaras")
+      }
       const qrScanner = new QrScanner(
         videoRef.current,
-        (result) => onResult(result.data),
+        (result) => onResult(console.log(result)),
         {
           returnDetailedScanResult: true,
           onDecodeError: (error) => console.error(error),
@@ -29,10 +31,12 @@ const QrScannerComponent = () => {
         }
       );
       const checkCameraPermission = async () => {
-       
   
         try {
-          const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+          const stream = await navigator.mediaDevices.getUserMedia({ video: {
+            facingMode: 'environment'
+          } });
+          console.log(stream)
           stream.getTracks().forEach(track => track.stop());
           qrScanner.start();
         } catch (err) {
@@ -73,5 +77,17 @@ const QrScannerComponent = () => {
       }
     </div>
   );
+  // const [val, setVal] = useState('');
+
+  // const handleRead = (code) => {
+  //   setVal(code.data);
+  // };
+
+  // return (
+  //   <>
+  //     <QrCodeReader delay={100} width={500} height={500} onRead={handleRead} />
+  //     <p>{val}</p>
+  //   </>
+  // );
 }
 export default QrScannerComponent
