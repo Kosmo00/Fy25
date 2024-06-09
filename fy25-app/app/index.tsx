@@ -4,6 +4,8 @@ import { CameraView, Camera } from "expo-camera";
 
 import { useSessionContext } from "@/context/SessionContext";
 import { AuthModal } from "@/components/modals/AuthModal";
+import RestApiClient from "@/utils/rest_api_client";
+import { AxiosError } from "axios";
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
@@ -22,11 +24,28 @@ export default function App() {
       setAuthModal(true)
     }
     console.log(logState)
-  }, [camera, musculation]);
+  }, []);
 
-  const handleBarCodeScanned = ({ type, data }: { type: any, data: any }) => {
+  const handleBarCodeScanned = async ({ type, data }: { type: any, data: any }) => {
     setScanned(true);
-    alert(`${data} ${musculation}`);
+    console.log("json para enviar: ", {
+      assistance_token: data,
+      authorization: "LTPv/UAhKU3pxbNPpeoESBX94rQPvIfcI0VdT1TE78g=",
+      serviceName: "Muscle"
+    })
+    try {
+      const res = await RestApiClient.post("https://8bm54v3d-3000.use2.devtunnels.ms/api/assistance/checkToken", {
+        assistance_token: data,
+        authorization: "LTPv/UAhKU3pxbNPpeoESBX94rQPvIfcI0VdT1TE78g=",
+        serviceName: "Muscle"
+      })
+      alert(`${data}`);
+      console.log('=========> ', res)
+    } catch (error) {
+      if (error instanceof AxiosError)
+        console.log('=====> ', error.message)
+
+    }
   };
 
   if (hasPermission === null) {
@@ -49,7 +68,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <AuthModal authModal={authModal} setAuthModal={setAuthModal}/>
+      {/* <AuthModal authModal={authModal} setAuthModal={setAuthModal}/> */}
       {camera &&
         <CameraView
           onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
