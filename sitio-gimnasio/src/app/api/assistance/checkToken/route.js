@@ -3,6 +3,7 @@ import { redisClient } from "@/redis/db";
 import Service from "@/db/models/service";
 import User from "@/db/models/user";
 import Log from "@/db/models/log";
+import sequelize from "@/db/connection";
 import { QR_TOKEN_SEPARATOR, REDIS_ASSISTANCE_TOKEN_PREFIX } from "../constrains";
 
 
@@ -12,8 +13,8 @@ async function getToken(email){
 }
 
 export async function POST(req){
-    const { assistance_token, authorization, serviceName} = req.json()
-    console.log(":::::::::::::::::", assistance_token,  authorization, serviceName)
+    const { assistance_token, authorization, serviceName} = await req.json()
+    console.log(assistance_token, authorization, serviceName)
     try{
         const splitted_token = assistance_token.split(QR_TOKEN_SEPARATOR)
         if(splitted_token.length !== 2){
@@ -34,6 +35,7 @@ export async function POST(req){
         const user = await User.findOne({where: {email}})
         const saved_token = await getToken(email)
         if(saved_token !== token){
+            await t.rollback()
             return NextResponse.json({message: 'Token Expirado o inválido', status: 401})
         }
         const service = await Service.findOne({where: {name: serviceName}})
@@ -56,8 +58,10 @@ export async function POST(req){
                 transaction: t
             }
         )
-        return NextResponse.json({data: '', status: 200})
+        await t.commit()
+        return NextResponse.json({data: { user_balance: user.info.deposited_money - user.info.payed_money}, status: 200})
     }catch(err){
+        await t.rollback()
         console.log(err)
         return NextResponse.json({message: 'Error interno', status: 500})
     }
