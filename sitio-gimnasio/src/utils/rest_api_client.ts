@@ -2,7 +2,7 @@ import axios, { InternalAxiosRequestConfig } from "axios";
 import LocalService from "../services/local_services";
 
 const localServices = new LocalService();
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const apiUrl = window.location.origin + '/api';
 
 const RestApiClient = axios.create({
 	baseURL: `${apiUrl}`,
