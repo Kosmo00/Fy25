@@ -2,6 +2,9 @@ import axios, { InternalAxiosRequestConfig } from "axios";
 import LocalService from "../services/local_services";
 
 const localServices = new LocalService();
+while(typeof window === 'undefined'){
+	// console.log("not yet")
+}
 const apiUrl = window.location.origin + '/api';
 
 const RestApiClient = axios.create({
